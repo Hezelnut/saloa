@@ -35,10 +35,10 @@ for value in dic.values():
         try:
             response_market =requests.post('https://developer-lostark.game.onstove.com/markets/items', headers=headers, json=json_market)
             content_market = response_market.json()
-            item = json.dumps(content_market["Items"]).replace("[","").replace("]","").replace("}, {","}${")
-            for i in range(len(item.split('$'))):
-                market_name.append(json.loads(item.split('$')[i])["Name"])
-                market_price.append(json.loads(item.split('$')[i])["RecentPrice"])
+            item = content_market['Items']
+            for i in range(len(item_list)):
+                market_name.append(item[i]['Name'])
+                market_price.append(item[i]['RecentPrice'])
         except:pass
 
 json_auction = {
