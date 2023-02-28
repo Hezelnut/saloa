@@ -50,7 +50,7 @@ json_auction = {
     'CharacterClass': '',
     'ItemTier': 3,
     'ItemGrade': '영웅',
-    'ItemName': '5레벨',
+    'ItemName': '3레벨',
     'PageNo': 0,
     'SortCondition': 'ASC',
 }
@@ -70,7 +70,7 @@ def charge(args):
 tab1, tab2, tab3 = st.tabs(['전설지도','오레하 공장', '배틀아이템 공장'])
 
 with tab1:
-    Legendmap=price('명예의 파편 주머니(대)')*8 + price('태양의 가호')*4 + price('태양의 축복')*8 + price('태양의 은총')*12 + item_list[1]['AuctionInfo']['BuyPrice']*40/81
+    Legendmap=price('명예의 파편 주머니(대)')*11 + price('태양의 가호')*4 + price('태양의 축복')*10 + price('태양의 은총')*16 + item_list[1]['AuctionInfo']['BuyPrice']*5
     st.write('판매하지 않는다면 ',Legendmap,'골드')
     st.write('판매한다면 ',Legendmap*0.95,'골드')
 
