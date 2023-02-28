@@ -49,7 +49,7 @@ json_auction = {
     'CategoryCode': 210000,
     'CharacterClass': '',
     'ItemTier': 3,
-    'ItemGrade': '영웅',
+    'ItemGrade': '희귀',
     'ItemName': '3레벨',
     'PageNo': 0,
     'SortCondition': 'ASC',
