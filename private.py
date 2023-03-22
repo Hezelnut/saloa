@@ -64,7 +64,6 @@ content_auction = response_auction.json()
 item_list = content_auction['Items']
 
 
-market_list = dict(zip(market_name,market_price))
 def price(args):
     return database()[args]
 def charge(args):
