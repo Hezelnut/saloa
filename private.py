@@ -11,35 +11,33 @@ st.set_page_config(
 
 st.title("Market/Auction")
 
-dic = {'재련재료':50000,'배틀아이템':60000,'생활':90000}
-market_name = []
-market_price = []   
-for value in dic.values():
-    headers = {
-        'accept': 'application/json',
-        'authorization': 'bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyIsImtpZCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyJ9.eyJpc3MiOiJodHRwczovL2x1ZHkuZ2FtZS5vbnN0b3ZlLmNvbSIsImF1ZCI6Imh0dHBzOi8vbHVkeS5nYW1lLm9uc3RvdmUuY29tL3Jlc291cmNlcyIsImNsaWVudF9pZCI6IjEwMDAwMDAwMDAwODc4NTYifQ.Kz1Q31XCxpow-7vQUhjx8sejfVuQHi0T7BLfVoIXd4LErYMYJZ82oc9PX3Ls19rVxgvnNrwnpu2a2Ctg3vX8qO0214NgAh1Ab8M2hPPEksai7LY2enjhBGu7nvs8Ic9eq43p4DiGlpHQ68zZBbTo1WFbumayIrWkVAD-m7AHbkuguM0pMuXv8qL7ar6ZR-vVUsOetOuAannv6OpFhss3db1n4PuJM6S1TPyo2-Uo6T2FTp5Ue9C8TmIFnj97ZESorEU5KttbZ9qkL8yYnsK1A6glbYQksGMkCS0zQCp87BRQPccKAw41WlybHWcdjU3Zz3iDtMmQ5zv0GI_s0tzEmQ',
-        'Content-Type': 'application/json',
-        }
-
-    for t in range(1,10) :
-        json_market = {
-        'Sort': '',
-        'CategoryCode': value,
-        'CharacterClass': '',
-        'ItemTier': 0,
-        'ItemGrade': '',
-        'ItemName': '' ,
-        'PageNo': t,
-        'SortCondition': 'ASC',
-        }
-        try:
-            response_market =requests.post('https://developer-lostark.game.onstove.com/markets/items', headers=headers, json=json_market)
-            content_market = response_market.json()
-            item = content_market['Items']
-            for i in range(len(item)):
-                market_name.append(item[i]['Name'])
-                market_price.append(item[i]['RecentPrice'])
-        except:pass
+@st.cache_data
+def database():
+    data_name = []
+    data_price = []
+    dic = {'재련재료':50000,'배틀아이템':60000,'생활':90000,'각인서':40000} 
+    for value in dic.values():
+        for t in range(1,10) :
+            json_market = {
+            'Sort': '',
+            'CategoryCode': value,
+            'CharacterClass': '',
+            'ItemTier': 0,
+            'ItemGrade': '',
+            'ItemName': '' ,
+            'PageNo': t,
+            'SortCondition': 'ASC',
+            }
+            try:
+                response_market =requests.post('https://developer-lostark.game.onstove.com/markets/items', headers=headers, json=json_market)
+                content_market = response_market.json()
+                item = content_market['Items']
+                for i in range(len(item)):
+                    data_name.append(item[i]['Name'])
+                    data_price.append(item[i]['RecentPrice'])
+            except:pass
+    data_dict = dict(zip(data_name,data_price))
+    return data_dict
 
 json_auction = {
     'ItemLevelMin': 0,
@@ -62,12 +60,13 @@ item_list = content_auction['Items']
 
 market_list = dict(zip(market_name,market_price))
 def price(args):
-    return market_list[args]
+    return database()[args]
 def charge(args):
-    for n in range(0,market_list[args]):
-        if n+1>=market_list[args]*0.05>n:
+    for n in range(0,database()[args]):
+        if n+1>=database()[args]*0.05>n:
             return n+1
-tab1, tab2, tab3 = st.tabs(['전설지도','오레하 공장', '배틀아이템 공장'])
+        
+tab1, tab2, tab3, tab4, tab5 = st.tabs(['전설지도','오레하 공장', '배틀아이템 공장','더보기 손익','경매 입찰가격'])
 
 with tab1:
     Legendmap=price('명예의 파편 주머니(대)')*11 + price('태양의 가호')*4 + price('태양의 축복')*10 + price('태양의 은총')*16 + item_list[1]['AuctionInfo']['BuyPrice']*5
@@ -146,3 +145,22 @@ with tab3:
         st.write('암흑 수류탄 : 제작 1칸 당 ',battle_5/10,' 골드 이득')
     else:
         st.warning('암흑 수류탄 제작 : 손해')
+        
+with tab4:
+    st.write('더보기 계산')
+
+with tab5:
+    radio = st.radio("컨텐츠 종류",('4인 컨텐츠','8인 컨텐츠','3인 버스','4인 버스','5인 버스'))
+    bid = st.number_input("경매품 가격을 입력하세요")
+    if bid == 0.00 :
+        pass
+    elif radio == '4인 컨텐츠':
+        st.write(bid*0.95*3/4.4,'골드 이상 ',bid*0.95*3/4,'골드 이하')
+    elif radio == '8인 컨텐츠':
+        st.write(bid*0.95*7/8.8,'골드 이상 ',bid*0.95*7/8,'골드 이하')
+    elif radio == '3인 버스':
+        st.write('보석 입찰 가격 ',(bid*0.95-50)/3.95,'골드')
+    elif radio == '4인 버스':
+        st.write('보석 입찰 가격 ',(bid*0.95-50)/4.95,'골드')
+    elif radio == '5인 버스':
+        st.write('보석 입찰 가격 ',(bid*0.95-50)/5.95,'골드')        
