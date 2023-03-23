@@ -9,7 +9,7 @@ st.set_page_config(
     layout="wide",
 )
 
-st.title("Market/Auction")
+st.title("Saloa")
 
 reset = st.button('갱신하기')
 if reset:
@@ -29,7 +29,7 @@ headers = {
 def database():
     data_name = []
     data_price = []
-    dic = {'재련재료':50000,'배틀아이템':60000,'생활':90000,'각인서':40000} 
+    dic = {'재련재료':50000,'배틀아이템':60000,'생활':90000} 
     for value in dic.values():
         for t in range(1,10) :
             json_market = {
@@ -99,7 +99,7 @@ with tab2:
     recipe_legacy = oreha_legacy*520 + price('희귀한 유물')*510 + price('고대 유물')*107
     profit_legacy = (price('최상급 오레하 융화 재료')-charge('최상급 오레하 융화 재료'))*1500-recipe_legacy-27600
     if profit_legacy>=0:
-        st.write('최상급 오레하 융화 재료 : 제작 1칸 당 ',profit_legacy/10,'골드 이득')
+        st.write('최상급 오레하 융화 재료 : 제작 1칸 당 ',profit_legacy/100,'골드 이득')
     else:
         st.warning('최상급 오레하 융화 재료 : 손해')
     st.subheader('낚시 제작')
@@ -113,7 +113,7 @@ with tab2:
     recipe_fishing = oreha_fishing*520 + price('자연산 진주')*640 + price('생선')*142
     profit_fishing = (price('최상급 오레하 융화 재료')-charge('최상급 오레하 융화 재료'))*1500 - recipe_fishing -27600
     if profit_fishing >= 0:
-        st.write('최상급 오레하 융화 재료 : 제작 1칸 당 ',profit_fishing/10,' 골드 이득')
+        st.write('최상급 오레하 융화 재료 : 제작 1칸 당 ',profit_fishing/100,' 골드 이득')
     else:
         st.warning('최상급 오레하 융화 재료 : 손해')
 with tab3:
