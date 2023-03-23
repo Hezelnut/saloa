@@ -10,7 +10,11 @@ st.set_page_config(
 )
 
 st.title("Market/Auction")
-reset = st.button('갱신하기',st.cache_data.clear())
+reset = st.button('갱신하기')
+if reset :
+    st.cache_data.clear()
+else :
+    pass
 
 headers = {
             'accept': 'application/json',
