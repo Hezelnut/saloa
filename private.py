@@ -1,7 +1,7 @@
 import requests
-import json
 import streamlit as st
 import pandas as pd
+import pandas
 
 st.set_page_config(
     page_title="saloa.gg",
@@ -161,7 +161,7 @@ with tab3:
         
 with tab4:
     select_reward = st.multiselect('필요한 재료 선택',('명예의 파편','찬란한 명예의 돌파석','정제된 파괴강석','혼돈의 돌'),['명예의 파편','찬란한 명예의 돌파석','정제된 파괴강석','혼돈의 돌'])
-    raid = st.selectbox('컨텐츠',('아브렐슈드 하드1관문','아브렐슈드 하드2관문','아브렐슈드 하드3관문','아브렐슈드 하드4관문','아브렐슈드 하드5관문','아브렐슈드 하드6관문','천공의 문 넬라시아 하드3','영원한 빛의 요람 하드3','일리아칸 노말1관문','일리아칸 노말2관문','일리아칸 노말3관문','일리아칸 하드1관문','일리아칸 하드2관문','일리아칸 하드3관문','혼돈의 상아탑 노말1관문','혼돈의 상아탑 노말2관문','혼돈의 상아탑 노말3관문','혼돈의 상아탑 노말4관문','혼돈의 상아탑 하드1관문','혼돈의 상아탑 하드2관문','혼돈의 상아탑 하드3관문','혼돈의 상아탑 하드4관문'))
+    raid = st.selectbox('컨텐츠',('아브렐슈드 하드','카양겔 하드3','일리아칸 노말','일리아칸 하드','혼돈의 상아탑 노말','혼돈의 상아탑 하드'))
     
     if '명예의 파편' in select_reward:
         price_sh = price('명예의 파편 주머니(대)')/1500
@@ -182,6 +182,28 @@ with tab4:
         price_ch = 500
     else:
         price_ch = 0
+
+    #레이드 종류
+
+    if '아브렐슈드 하드' not in st.session_state:
+        st.session_state['아브렐슈드 하드'] = ['아브렐슈드 하드1관문','아브렐슈드 하드2관문','아브렐슈드 하드3관문','아브렐슈드 하드4관문','아브렐슈드 하드5관문','아브렐슈드 하드6관문']
+
+    if '카양겔 하드3' not in st.session_state:
+        st.session_state['카양겔 하드3'] = ['천공의 문 넬라시아 하드3','영원한 빛의 요람 하드3']
+
+    if '일리아칸 노말' not in st.session_state:
+        st.session_state['일리아칸 노말'] = ['일리아칸 노말1관문','일리아칸 노말2관문','일리아칸 노말3관문']
+
+    if '일리아칸 하드' not in st.session_state:
+        st.session_state['일리아칸 하드'] = ['일리아칸 하드1관문','일리아칸 하드2관문','일리아칸 하드3관문']
+
+    if '혼돈의 상아탑 노말' not in st.session_state:
+        st.session_state['혼돈의 상아탑 노말'] = ['혼돈의 상아탑 노말1관문','혼돈의 상아탑 노말2관문','혼돈의 상아탑 노말3관문','혼돈의 상아탑 노말4관문']
+
+    if '혼돈의 상아탑 하드' not in st.session_state:
+        st.session_state['혼돈의 상아탑 하드'] = ['혼돈의 상아탑 하드1관문','혼돈의 상아탑 하드2관문','혼돈의 상아탑 하드3관문','혼돈의 상아탑 하드4관문']
+
+    #레이드 보상
 
     if '아브렐슈드 하드1관문' not in st.session_state:
         st.session_state['아브렐슈드 하드1관문'] = {'명예의 파편':1600,'정제된 파괴강석':24,'찬란한 명예의 돌파석':1.6,'혼돈의 돌':0.6,'더보기 골드':700}
@@ -249,11 +271,22 @@ with tab4:
     if '혼돈의 상아탑 하드4관문' not in st.session_state:
         st.session_state['혼돈의 상아탑 하드4관문'] = {'명예의 파편':5500,'정제된 파괴강석':300,'찬란한 명예의 돌파석':7,'혼돈의 돌':0,'빛나는 지혜의 기운':1,'빛나는 지혜의 엘릭서':1,'더보기 골드':2000}
 
-    break_even = st.session_state[raid]['명예의 파편']*price_sh + st.session_state[raid]['정제된 파괴강석']*price_de + st.session_state[raid]['혼돈의 돌']*500 + st.session_state[raid]['찬란한 명예의 돌파석']*price_st - st.session_state[raid]['더보기 골드']
-    if break_even >= 0 :
-        st.write('더보기 하는 편이',break_even,' 골드 이득')
-    else :
-        st.warning('더보기가 손해')
+    raid_name = st.session_state[raid]
+    df_list = []
+    for i in range(0,len(raid_name)):
+        raid_gate = raid_name[i]
+        raid_reward = st.session_state[raid_gate]
+        break_even = raid_reward['명예의 파편']*price_sh + raid_reward['정제된 파괴강석']*price_de + raid_reward['혼돈의 돌']*500 + raid_reward['찬란한 명예의 돌파석']*price_st - raid_reward['더보기 골드']
+        if break_even >= 0 :
+            result = '[더보기] 하는 편이 {} 골드 이득'.format(break_even)
+        else :
+            result = '[더보기]하면 손해'
+        df_tuple = (raid_gate,result)
+        df_list.append(list(df_tuple))
+        
+    df = pd.DataFrame(df_list,columns=('관문','손익'))
+    st.subheader(raid)
+    st.write(df)
 
 
 with tab5:
@@ -273,5 +306,3 @@ with tab5:
         st.write('보석 입찰 가격 ',(bid*0.95-50)/4.95,'골드')        
     elif radio == '6인 버스':
         st.write('보석 입찰 가격 ',(bid*0.95-50)/5.95,'골드')
-     
-    
