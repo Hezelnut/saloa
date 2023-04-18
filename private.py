@@ -88,6 +88,12 @@ with tab1:
 
 with tab2:
     st.write('최상급 오레하 융화 재료 가격 : ',price('최상급 오레하 융화 재료'),'골드')
+    slide_option = [price('최상급 오레하 융화 재료')-2,price('최상급 오레하 융화 재료')-1,price('최상급 오레하 융화 재료'),price('최상급 오레하 융화 재료')+1,price('최상급 오레하 융화 재료')+2]
+    oreha_value = st.select_slider('판매하려는 가격',slide_option)
+    for n in range(0,oreha_value):
+        if n+1>=oreha_value*0.05>n:
+            oreha_charge = n+1
+
     st.subheader('고고학 제작')
     st.write('현재 가격 = [ 오레하 유물 : {}골드, 희귀한 유물 : {}골드, 고대 유물 : {}골드 ]'.format(price('오레하 유물'),price('희귀한 유물'),price('고대 유물')))
     if price('희귀한 유물')*25/4 >= price('오레하 유물'):
@@ -97,7 +103,7 @@ with tab2:
         oreha_legacy = price('희귀한 유물')*25/4
         st.write('가루 교환 사용')
     recipe_legacy = oreha_legacy*520 + price('희귀한 유물')*510 + price('고대 유물')*107
-    profit_legacy = (price('최상급 오레하 융화 재료')-charge('최상급 오레하 융화 재료'))*1500-recipe_legacy-27600
+    profit_legacy = (oreha_value-oreha_charge)*1500-recipe_legacy-27600
     if profit_legacy>=0:
         st.write('최상급 오레하 융화 재료 : 제작 1칸 당 ',profit_legacy/100,'골드 이득')
     else:
@@ -111,11 +117,13 @@ with tab2:
         oreha_fishing = price('붉은 살 생선')*25/4
         st.write('가루 교환 사용')
     recipe_fishing = oreha_fishing*520 + price('자연산 진주')*640 + price('생선')*142
-    profit_fishing = (price('최상급 오레하 융화 재료')-charge('최상급 오레하 융화 재료'))*1500 - recipe_fishing -27600
+    profit_fishing = (oreha_value-oreha_charge)*1500 - recipe_fishing -27600
     if profit_fishing >= 0:
         st.write('최상급 오레하 융화 재료 : 제작 1칸 당 ',profit_fishing/100,' 골드 이득')
     else:
         st.warning('최상급 오레하 융화 재료 : 손해')
+
+
 with tab3:
     
     st.subheader('정령의 회복약')
@@ -182,6 +190,7 @@ with tab4:
         price_ch = 500
     else:
         price_ch = 0
+
 
     #레이드 종류
 
@@ -259,28 +268,30 @@ with tab4:
     if '혼돈의 상아탑 노말4관문' not in st.session_state:
         st.session_state['혼돈의 상아탑 노말4관문'] = {'명예의 파편':4500,'정제된 파괴강석':200,'찬란한 명예의 돌파석':3,'혼돈의 돌':0,'선명한 지혜의 기운':1,'선명한 지혜의 엘릭서':1,'더보기 골드':1100}
 
+    elixer = price('빛나는 지혜의 정수')*6*0.95-250
+
     if '혼돈의 상아탑 하드1관문' not in st.session_state:
-        st.session_state['혼돈의 상아탑 하드1관문'] = {'명예의 파편':4000,'정제된 파괴강석':150,'찬란한 명예의 돌파석':3,'혼돈의 돌':0,'빛나는 지혜의 기운':2,'더보기 골드':1000}
+        st.session_state['혼돈의 상아탑 하드1관문'] = {'명예의 파편':4000,'정제된 파괴강석':150,'찬란한 명예의 돌파석':3,'혼돈의 돌':0,'더보기 골드':1000-elixer/2}
 
     if '혼돈의 상아탑 하드2관문' not in st.session_state:
-        st.session_state['혼돈의 상아탑 하드2관문'] = {'명예의 파편':4000,'정제된 파괴강석':150,'찬란한 명예의 돌파석':3,'혼돈의 돌':0,'빛나는 지혜의 기운':2,'더보기 골드':1000}
+        st.session_state['혼돈의 상아탑 하드2관문'] = {'명예의 파편':4000,'정제된 파괴강석':150,'찬란한 명예의 돌파석':3,'혼돈의 돌':0,'더보기 골드':1000-elixer/2}
 
     if '혼돈의 상아탑 하드3관문' not in st.session_state:
-        st.session_state['혼돈의 상아탑 하드3관문'] = {'명예의 파편':5000,'정제된 파괴강석':240,'찬란한 명예의 돌파석':5,'혼돈의 돌':0,'빛나는 지혜의 기운':3,'더보기 골드':1500}
+        st.session_state['혼돈의 상아탑 하드3관문'] = {'명예의 파편':5000,'정제된 파괴강석':240,'찬란한 명예의 돌파석':5,'혼돈의 돌':0,'더보기 골드':1500-elixer*3/4}
 
     if '혼돈의 상아탑 하드4관문' not in st.session_state:
-        st.session_state['혼돈의 상아탑 하드4관문'] = {'명예의 파편':5500,'정제된 파괴강석':300,'찬란한 명예의 돌파석':7,'혼돈의 돌':0,'빛나는 지혜의 기운':1,'빛나는 지혜의 엘릭서':1,'더보기 골드':2000}
+        st.session_state['혼돈의 상아탑 하드4관문'] = {'명예의 파편':5500,'정제된 파괴강석':300,'찬란한 명예의 돌파석':7,'혼돈의 돌':0,'더보기 골드':2000-elixer/4-price('빛나는 지혜의 정수')*6}
 
     raid_name = st.session_state[raid]
     df_list = []
     for i in range(0,len(raid_name)):
         raid_gate = raid_name[i]
         raid_reward = st.session_state[raid_gate]
-        break_even = raid_reward['명예의 파편']*price_sh + raid_reward['정제된 파괴강석']*price_de + raid_reward['혼돈의 돌']*500 + raid_reward['찬란한 명예의 돌파석']*price_st - raid_reward['더보기 골드']
+        break_even = raid_reward['명예의 파편']*price_sh + raid_reward['정제된 파괴강석']*price_de + raid_reward['혼돈의 돌']*price_ch + raid_reward['찬란한 명예의 돌파석']*price_st - raid_reward['더보기 골드']
         if break_even >= 0 :
-            result = '[더보기] 하는 편이 {} 골드 이득'.format(break_even)
+            result = '더보기하는 편이 {} 골드 이득'.format(break_even)
         else :
-            result = '[더보기]하면 손해'
+            result = '더보기하면 손해'
         df_tuple = (raid_gate,result)
         df_list.append(list(df_tuple))
         
