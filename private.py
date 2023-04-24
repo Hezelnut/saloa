@@ -88,8 +88,8 @@ with tab1:
 
 with tab2:
     st.write('최상급 오레하 융화 재료 가격 : ',price('최상급 오레하 융화 재료'),'골드')
-    slide_option = [price('최상급 오레하 융화 재료')-2,price('최상급 오레하 융화 재료')-1,price('최상급 오레하 융화 재료'),price('최상급 오레하 융화 재료')+1,price('최상급 오레하 융화 재료')+2]
-    oreha_value = st.select_slider('판매하려는 가격',slide_option,value=price('최상급 오레하 융화 재료'))
+    slide_option = (price('최상급 오레하 융화 재료')-2,price('최상급 오레하 융화 재료')-1,price('최상급 오레하 융화 재료'),price('최상급 오레하 융화 재료')+1,price('최상급 오레하 융화 재료')+2)
+    oreha_value = st.selectbox('판매하려는 가격',slide_option,index=2)
     for n in range(0,oreha_value):
         if n+1>=oreha_value*0.05>n:
             oreha_charge = n+1
