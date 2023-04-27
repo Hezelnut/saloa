@@ -321,7 +321,7 @@ with tab4:
     st.subheader(raid)
     st.write(df)
 
-    st.subheader('{0} / 컨텐츠 전체 밸류 : {1} 골드'.format(raid,sum(df_reward)))
+    st.subheader('컨텐츠 전체 밸류 : {} 골드'.format(sum(df_reward)))
 
 with tab5:
     radio = st.radio("컨텐츠 종류",('4인 컨텐츠','8인 컨텐츠','3인 버스','4인 버스','5인 버스'))
