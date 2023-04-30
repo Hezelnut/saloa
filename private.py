@@ -39,7 +39,7 @@ item_list = content_auction['Items']
 def database():
     data_name = []
     data_price = []
-    update_time = datetime.datetime.now(pytz.timezone('Asia/Seoul')).strftime('%m.%d - %H:%M:%S')
+    update_time = datetime.datetime.now(pytz.timezone('Asia/Seoul'))
     
     dic = {'재련재료':50000,'배틀아이템':60000,'생활':90000} 
     for value in dic.values():
@@ -70,12 +70,13 @@ def database():
 st.title("Saloa")
 
 reset = st.button('갱신하기')
-st.write('마지막 갱신',database()[0])
+st.write('마지막 갱신',database()[0].strftime('%m.%d - %H:%M:%S'))
 if reset:
     st.cache_data.clear()
 else:
     pass
 
+st.write(datetime.datetime.now(pytz.timezone('Asia/Seoul')-database()[0])
 
 def price(args):
     return database()[1][args]
