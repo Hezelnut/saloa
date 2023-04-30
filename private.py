@@ -80,7 +80,7 @@ else:pass
 
         
 st.write('Data load : ',database()[0].strftime('%m.%d - %H:%M:%S'))
-st.write(time_gap)
+st.write(time_gap.total_seconds())
 
 
 def price(args):
