@@ -69,7 +69,7 @@ def database():
 
 st.title("Saloa")
 
-time_gap = database()[0]-datetime.datetime.now(pytz.timezone('Asia/Seoul'))
+time_gap = datetime.datetime.now(pytz.timezone('Asia/Seoul')) - database()[0]
 time_check = time_gap/datetime.timedelta(minutes=3)
 
 reset = st.button('데이터 최신화')
