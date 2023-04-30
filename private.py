@@ -72,11 +72,17 @@ st.title("Saloa")
 time_gap = datetime.datetime.now(pytz.timezone('Asia/Seoul')) - database()[0]
 time_check = time_gap/datetime.timedelta(minutes=3)
 
-reset = st.button('데이터 최신화')
-if reset:
-    st.cache_data.clear()
-else :
-    pass
+if time_check >= 0:
+    reset_1 = st.button('데이터 최신화')
+    if reset_1 :
+        st.cache_data.clear()
+    else:pass
+else:
+    st.warning('3분 이내에 최신화되었습니다.')
+    reset_2 : st.button('갱신하기')
+    if reset_2:
+        st.cache_data.clear()
+    else:pass
         
 st.write('Data load : ',database()[0].strftime('%m.%d - %H:%M:%S'))
 
