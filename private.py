@@ -77,7 +77,7 @@ if reset:
     if time_check >= 1:
         st.cache_data.clear()
     else :
-        st.warning('이미 최신화되었습니다.')
+        st.write('이미 최신화되었습니다.')
         
 
 st.write('Data load : ',database()[0].strftime('%m.%d - %H:%M:%S'))
