@@ -78,12 +78,7 @@ if reset:
     if time_check >= 1:
         st.cache_data.clear()
     else :
-        st.warning('이미 최신화되었습니다. 갱신하시겠습니까?')
-        rest_check = st.button('갱신하기')
-        if rest_check:
-            st.cache_data.clear()
-        else:
-            st.write('bug')
+        st.warning('이미 최신화되었습니다.)
 else:pass
 
 def price(args):
