@@ -79,7 +79,7 @@ if time_check >= 1:
     else:pass
 else:
     st.warning('3분 이내에 최신화되었습니다.')
-    reset_2 : st.button('갱신하기')
+    reset_2 = st.button('갱신하기')
     if reset_2:
         st.cache_data.clear()
     else:pass
