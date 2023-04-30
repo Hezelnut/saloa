@@ -78,15 +78,7 @@ if reset:
         st.cache_data.clear()
     else :
         st.warning('이미 최신화되었습니다.')
-        reset_check = st.button('갱신하기')
-        if reset_check :
-            st.cache_data.clear()
-        else:
-            pass
-else:
-    if reset_check:
-        st.cache_data.clear()
-    else:pass
+        
 
 st.write('Data load : ',database()[0].strftime('%m.%d - %H:%M:%S'))
 
