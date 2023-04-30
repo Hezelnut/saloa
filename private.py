@@ -2,6 +2,7 @@ import requests
 import streamlit as st
 import pandas as pd
 import pandas
+import time
 
 st.set_page_config(
     page_title="saloa.gg",
@@ -12,6 +13,7 @@ st.set_page_config(
 st.title("Saloa")
 
 reset = st.button('갱신하기')
+st.write('마지막 갱신',database()[0])
 if reset:
     st.cache_data.clear()
 else:
@@ -29,6 +31,7 @@ headers = {
 def database():
     data_name = []
     data_price = []
+    update_time = time.strftime('%Y.%m.%d - %H:%M:%S')
     dic = {'재련재료':50000,'배틀아이템':60000,'생활':90000} 
     for value in dic.values():
         for t in range(1,10) :
@@ -50,8 +53,9 @@ def database():
                     data_name.append(item[i]['Name'])
                     data_price.append(item[i]['RecentPrice'])
             except:pass
-    data_dict = dict(zip(data_name,data_price))
-    return data_dict
+    data_dict_1 = dict(zip(data_name,data_price))
+    data_include_time = list(update_time,data_dict_1)
+    return data_dict_2
 
 json_auction = {
     'ItemLevelMin': 0,
@@ -73,10 +77,10 @@ item_list = content_auction['Items']
 
 
 def price(args):
-    return database()[args]
+    return database()[1][args]
 def charge(args):
-    for n in range(0,database()[args]):
-        if n+1>=database()[args]*0.05>n:
+    for n in range(0,database()[1][args]):
+        if n+1>=database()[1][args]*0.05>n:
             return n+1
         
 tab1, tab2, tab3, tab4, tab5 = st.tabs(['전설지도','오레하 공장', '배틀아이템 공장','컨텐츠 손익','경매 입찰가격'])
