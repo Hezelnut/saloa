@@ -74,12 +74,10 @@ time_check = time_gap/datetime.timedelta(minutes=3)
 
 reset = st.button('데이터 최신화')
 if reset:
-    if time_check >= 1:
-        st.cache_data.clear()
-    else :
-        st.write('이미 최신화되었습니다.')
+    st.cache_data.clear()
+else :
+    pass
         
-
 st.write('Data load : ',database()[0].strftime('%m.%d - %H:%M:%S'))
 
 
