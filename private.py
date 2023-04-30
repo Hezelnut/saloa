@@ -69,19 +69,17 @@ def database():
 
 st.title("Saloa")
 
-reset = st.button('갱신하기')
-st.write('마지막 갱신',database()[0].strftime('%m.%d - %H:%M:%S'))
+reset = st.button('데이터 최신화')
+st.write('Data load : ',database()[0].strftime('%m.%d - %H:%M:%S'))
 if reset:
-    st.cache_data.clear()
-else:
-    pass
-
-time_gap = datetime.datetime.now(pytz.timezone('Asia/Seoul'))-database()[0]
-time_check = time_gap/datetime.timedelta(minutes=5)
-if time_check >= 1 :
-    st.write('5분 초과')
-else:
-    st.write('5분 미만')
+    if time_check >= 1:
+        st.cache_data.clear()
+    else :
+        st.warning('이미 최신화되었습니다. 갱신하시겠습니까?')
+        rest_check = st.button('갱신하기')
+        if rest_check:
+            st.cache_data.clear()
+        else:pass
 
 def price(args):
     return database()[1][args]
