@@ -40,7 +40,7 @@ def database():
             except:pass
     data_dict_1 = dict(zip(data_name,data_price))
     data_include_time = list(update_time,data_dict_1)
-    return data_dict_2
+    return data_include_time
 
 st.title("Saloa")
 
