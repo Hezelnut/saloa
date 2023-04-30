@@ -1,8 +1,8 @@
 import requests
 import streamlit as st
 import pandas as pd
-import pandas
-import time
+import datetime
+import pytz
 
 st.set_page_config(
     page_title="saloa.gg",
@@ -39,7 +39,8 @@ item_list = content_auction['Items']
 def database():
     data_name = []
     data_price = []
-    update_time = time.strftime('%Y.%m.%d - %H:%M:%S')
+    update_time = datetime.datetime.now(pytz.timezone('Asia/Seoul')).strftime('%m.%d - %H:%M:%S')
+    
     dic = {'재련재료':50000,'배틀아이템':60000,'생활':90000} 
     for value in dic.values():
         for t in range(1,10) :
