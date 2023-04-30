@@ -80,7 +80,7 @@ else:pass
 
         
 st.write('Data load : ',database()[0].strftime('%m.%d - %H:%M:%S'))
-st.write(time_gap.total_seconds())
+st.write(time_gap.total_seconds()//60,'분 전에 최신화되었습니다.')
 
 
 def price(args):
