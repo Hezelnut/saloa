@@ -83,6 +83,7 @@ if reset:
         if rest_check:
             st.cache_data.clear()
         else:pass
+else:pass
 
 def price(args):
     return database()[1][args]
