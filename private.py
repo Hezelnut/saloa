@@ -82,7 +82,8 @@ if reset:
         rest_check = st.button('갱신하기')
         if rest_check:
             st.cache_data.clear()
-        else:pass
+        else:
+            st.write('bug')
 else:pass
 
 def price(args):
