@@ -62,7 +62,8 @@ def database():
                     data_price.append(item[i]['RecentPrice'])
             except:pass
     data_dict_1 = dict(zip(data_name,data_price))
-    data_include_time = list(update_time,data_dict_1)
+    data_tuple = (update_time,data_dict_1)
+    data_include_time = list(data_tuple)
     return data_include_time
 
 st.title("Saloa")
@@ -73,9 +74,6 @@ if reset:
     st.cache_data.clear()
 else:
     pass
-
-
-
 
 
 def price(args):
