@@ -76,7 +76,7 @@ if reset:
 else:
     pass
 
-st.write(datetime.datetime.now(pytz.timezone('Asia/Seoul')-database()[0])
+st.write(datetime.datetime.now(pytz.timezone('Asia/Seoul')-database()[0]))
 
 def price(args):
     return database()[1][args]
