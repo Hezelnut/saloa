@@ -76,7 +76,12 @@ if reset:
 else:
     pass
 
-st.write(datetime.datetime.now(pytz.timezone('Asia/Seoul'))-database()[0])
+time_gap = datetime.datetime.now(pytz.timezone('Asia/Seoul'))-database()[0]
+time_check = time_gap/datetime.timedelta(minutes=5)
+if time_check >= 1 :
+    st.write('5분 초과')
+else:
+    st.write('5분 미만')
 
 def price(args):
     return database()[1][args]
