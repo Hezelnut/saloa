@@ -312,7 +312,7 @@ with tab4:
     for i in range(0,len(raid_name)):
         raid_gate = raid_name[i]
         raid_reward = st.session_state[raid_gate]['컨텐츠 보상']
-        reward_price = raid_reward['명예의 파편']*price_sh + raid_reward['정제된 파괴강석']*price_de + raid_reward['혼돈의 돌']*price_ch + raid_reward['찬란한 명예의 돌파석']*price_st + raid_reward['정제된 수호강석']*price_pr_2 + raid_reward['클리어 골드']
+        reward_price = int(raid_reward['명예의 파편']*price_sh + raid_reward['정제된 파괴강석']*price_de + raid_reward['혼돈의 돌']*price_ch + raid_reward['찬란한 명예의 돌파석']*price_st + raid_reward['정제된 수호강석']*price_pr_2 + raid_reward['클리어 골드'])
         raid_reward_plus = st.session_state[raid_gate]['더보기']
         break_even = raid_reward_plus['명예의 파편']*price_sh + raid_reward_plus['정제된 파괴강석']*price_de + raid_reward_plus['혼돈의 돌']*price_ch + raid_reward_plus['찬란한 명예의 돌파석']*price_st + raid_reward_plus['정제된 수호강석']*price_pr_2- raid_reward_plus['더보기 골드']
         if break_even >= 0 :
