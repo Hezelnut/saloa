@@ -130,7 +130,7 @@ with tab2:
     recipe_fishing = oreha_fishing*520 + price('자연산 진주')*640 + price('생선')*142
     profit_fishing = (oreha_value-oreha_charge)*1500 - recipe_fishing -27600
     if profit_fishing >= 0:
-        st.write('최상급 오레하 융화 재료 : 제작 1칸 당 ',profit_fishing/100,' 골드 이득')
+        st.write('최상급 오레하 융화 재료 : 제작 1칸 당 ',int(profit_fishing/100),' 골드 이득')
     else:
         st.warning('최상급 오레하 융화 재료 : 손해')
 
@@ -141,7 +141,7 @@ with tab3:
     st.write('정령의 회복약 가격 : ',price('정령의 회복약'),'골드')
     battle_1 = (price('정령의 회복약')-charge('정령의 회복약'))*30 - (price('화사한 들꽃')*6 + price('수줍은 들꽃')*24 + price('들꽃')*5 + 260)
     if battle_1 >= 0:
-        st.write('정령의 회복약 : 제작 1칸 당 ',battle_1/10,' 골드 이득')
+        st.write('정령의 회복약 : 제작 1칸 당 ',int(battle_1/10),' 골드 이득')
     else:
         st.warning('정령의 회복약 제작 : 손해')
     
@@ -316,14 +316,14 @@ with tab4:
         raid_reward_plus = st.session_state[raid_gate]['더보기']
         break_even = raid_reward_plus['명예의 파편']*price_sh + raid_reward_plus['정제된 파괴강석']*price_de + raid_reward_plus['혼돈의 돌']*price_ch + raid_reward_plus['찬란한 명예의 돌파석']*price_st + raid_reward_plus['정제된 수호강석']*price_pr_2- raid_reward_plus['더보기 골드']
         if break_even >= 0 :
-            result = '더보기 이득 : {} 골드'.format(break_even)
+            result = '더보기 이득 : {} 골드'.format(int(break_even))
             value_all = reward_price+break_even
-            result_all = '보상 밸류 (더보기 포함): {} 골드'.format(value_all)
+            result_all = '보상 밸류 (더보기 포함): {} 골드'.format(int(value_all))
             
         else :
-            result = '더보기 손해 : {} 골드'.format(break_even)
+            result = '더보기 손해 : {} 골드'.format(int(break_even))
             value_all = reward_price
-            result_all = '보상 밸류 (더보기 하지않음) : {} 골드'.format(value_all)
+            result_all = '보상 밸류 (더보기 하지않음) : {} 골드'.format(int(value_all))
         df_tuple = (raid_gate,reward_price,result,result_all)
         df_list.append(list(df_tuple))
         df_reward.append(value_all)
@@ -332,7 +332,7 @@ with tab4:
     st.subheader(raid)
     st.write(df)
 
-    st.subheader('컨텐츠 전체 밸류 : {} 골드'.format(sum(df_reward)))
+    st.subheader('컨텐츠 전체 밸류 : {} 골드'.format(int(sum(df_reward))))
 
 with tab5:
     radio = st.radio("컨텐츠 종류",('4인 컨텐츠','8인 컨텐츠','3인 버스','4인 버스','5인 버스'))
