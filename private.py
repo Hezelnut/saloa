@@ -340,14 +340,14 @@ with tab5:
     if bid == 0.00 :
         pass
     elif radio == '4인 컨텐츠':
-        st.write(bid*0.95*3/4.4,'골드 이상 ',bid*0.95*3/4,'골드 이하')
+        st.write(int(bid*0.95*3/4.4),'골드 이상 ',int(bid*0.95*3/4),'골드 이하')
     elif radio == '8인 컨텐츠':
-        st.write(bid*0.95*7/8.8,'골드 이상 ',bid*0.95*7/8,'골드 이하')
+        st.write(int(bid*0.95*7/8.8),'골드 이상 ',int(bid*0.95*7/8),'골드 이하')
     elif radio == '3인 버스':
-        st.write('보석 입찰 가격 ',(bid*0.95-50)/2.95,'골드')
+        st.write('보석 입찰 가격 ',(int(bid*0.95-50)/2.95),'골드')
     elif radio == '4인 버스':
-        st.write('보석 입찰 가격 ',(bid*0.95-50)/3.95,'골드')
+        st.write('보석 입찰 가격 ',(int(bid*0.95-50)/3.95),'골드')
     elif radio == '5인 버스':
-        st.write('보석 입찰 가격 ',(bid*0.95-50)/4.95,'골드')        
+        st.write('보석 입찰 가격 ',(int(bid*0.95-50)/4.95),'골드')        
     elif radio == '6인 버스':
-        st.write('보석 입찰 가격 ',(bid*0.95-50)/5.95,'골드')
+        st.write('보석 입찰 가격 ',(int(bid*0.95-50)/5.95),'골드')
