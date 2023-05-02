@@ -3,6 +3,7 @@ import streamlit as st
 import pandas as pd
 import datetime
 import pytz
+import time
 
 st.set_page_config(
     page_title="saloa.gg",
@@ -72,6 +73,8 @@ st.title("Saloa")
 
 reset_1 = st.button('데이터 최신화')
 if reset_1 :
+    st.cache_data.clear()
+    time.sleep(3600)
     st.cache_data.clear()
 else:pass
 
