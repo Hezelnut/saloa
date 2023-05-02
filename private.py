@@ -72,13 +72,10 @@ st.title("Saloa")
 
 
 reset_1 = st.button('데이터 최신화')
-async def reset():    
-    if reset_1 :
-        await st.cache_data.clear()
-        asyncio.sleep(3600)
-        await st.cache_data.clear()
-    else:pass
-reset()
+if reset_1 :
+    st.cache_data.clear()
+else:pass
+
 
 time_gap = datetime.datetime.now(pytz.timezone('Asia/Seoul')) - database()[0]
 time_check = time_gap/datetime.timedelta(minutes=3)
