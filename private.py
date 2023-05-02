@@ -74,7 +74,7 @@ async def reset():
     reset_1 = st.button('데이터 최신화')
     if reset_1 :
         await st.cache_data.clear()
-        await time.sleep(3600)
+        asyncio.sleep(3600)
         await st.cache_data.clear()
     else:pass
 
