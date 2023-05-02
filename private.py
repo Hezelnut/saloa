@@ -78,6 +78,8 @@ async def reset():
         await st.cache_data.clear()
     else:pass
 
+reset()
+
 time_gap = datetime.datetime.now(pytz.timezone('Asia/Seoul')) - database()[0]
 time_check = time_gap/datetime.timedelta(minutes=3)
        
