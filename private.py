@@ -3,7 +3,7 @@ import streamlit as st
 import pandas as pd
 import datetime
 import pytz
-import time
+import asyncio
 
 st.set_page_config(
     page_title="saloa.gg",
@@ -70,13 +70,13 @@ def database():
 
 st.title("Saloa")
 
-
-reset_1 = st.button('데이터 최신화')
-if reset_1 :
-    st.cache_data.clear()
-    time.sleep(3600)
-    st.cache_data.clear()
-else:pass
+async def reset():
+    reset_1 = st.button('데이터 최신화')
+    if reset_1 :
+        await st.cache_data.clear()
+        await time.sleep(3600)
+        await st.cache_data.clear()
+    else:pass
 
 time_gap = datetime.datetime.now(pytz.timezone('Asia/Seoul')) - database()[0]
 time_check = time_gap/datetime.timedelta(minutes=3)
