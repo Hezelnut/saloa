@@ -95,7 +95,7 @@ def charge(args):
 tab1, tab2, tab3, tab4, tab5 = st.tabs(['전설지도','오레하 공장', '배틀아이템 공장','컨텐츠 손익','경매 입찰가격'])
 
 with tab1:
-    col1, col2 = st.columns(2)
+    col2, col1 = st.columns(2)
     Legendmap=price('명예의 파편 주머니(대)')*9 + price('태양의 가호')*4 + price('태양의 축복')*10 + price('태양의 은총')*16 + item_list[1]['AuctionInfo']['BuyPrice']*5
     col1.metric(label='판매하지 않는다면',value=str(int(Legendmap))+'골드')
     col2.metric(label='판매한다면',value=str(int(Legendmap*0.95))+'골드')
