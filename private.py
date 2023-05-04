@@ -96,8 +96,9 @@ tab1, tab2, tab3, tab4, tab5 = st.tabs(['전설지도','오레하 공장', '배�
 
 with tab1:
     Legendmap=price('명예의 파편 주머니(대)')*9 + price('태양의 가호')*4 + price('태양의 축복')*10 + price('태양의 은총')*16 + item_list[1]['AuctionInfo']['BuyPrice']*5
-    st.write('판매하지 않는다면 ',int(Legendmap),'골드')
-    st.write('판매한다면 ',int(Legendmap*0.95),'골드')
+    st.subheader('판매하지 않는다면 ',int(Legendmap),'골드')
+    st.write('')
+    st.subheader('판매한다면 ',int(Legendmap*0.95),'골드')
 
 with tab2:
     st.write('최상급 오레하 융화 재료 가격 : ',price('최상급 오레하 융화 재료'),'골드')
