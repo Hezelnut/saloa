@@ -95,10 +95,10 @@ def charge(args):
 tab1, tab2, tab3, tab4, tab5 = st.tabs(['전설지도','오레하 공장', '배틀아이템 공장','컨텐츠 손익','경매 입찰가격'])
 
 with tab1:
-    col2, col1 = st.columns(2)
+    col1, col2 = st.columns(2)
     Legendmap=price('명예의 파편 주머니(대)')*9 + price('태양의 가호')*4 + price('태양의 축복')*10 + price('태양의 은총')*16 + item_list[1]['AuctionInfo']['BuyPrice']*5
-    col1.metric(label='판매하지 않는다면',value=str(int(Legendmap))+'골드')
-    col2.metric(label='판매한다면',value=str(int(Legendmap*0.95))+'골드')
+    col1.metric(label='판매한다면',value=str(int(Legendmap*0.95))+'골드')
+    col2.metric(label='판매하지 않는다면',value=str(int(Legendmap))+'골드')
 
 with tab2:
     st.write('최상급 오레하 융화 재료 가격 : ',price('최상급 오레하 융화 재료'),'골드')
@@ -108,34 +108,41 @@ with tab2:
         if n+1>=oreha_value*0.05>n:
             oreha_charge = n+1
 
-    st.subheader('고고학 제작')
-    st.write('현재 가격 = [ 오레하 유물 : {}골드, 희귀한 유물 : {}골드, 고대 유물 : {}골드 ]'.format(price('오레하 유물'),price('희귀한 유물'),price('고대 유물')))
+    col3, col4 = st.columns(2)
+    col3.subheader('고고학 제작')
+    legacy_1 = ('현재 가격 = [ 오레하 유물 : {}골드, 희귀한 유물 : {}골드, 고대 유물 : {}골드 ]'.format(price('오레하 유물'),price('희귀한 유물'),price('고대 유물')))
     if price('희귀한 유물')*25/4 >= price('오레하 유물'):
         oreha_legacy = price('오레하 유물')
-        st.write('가루 교환 쓰지않음')
+        legacy_2 = '가루 교환 쓰지않음'
     else:
         oreha_legacy = price('희귀한 유물')*25/4
-        st.write('가루 교환 사용')
+        legacy_2 = '가루 교환 사용'
     recipe_legacy = oreha_legacy*520 + price('희귀한 유물')*510 + price('고대 유물')*107
     profit_legacy = (oreha_value-oreha_charge)*1500-recipe_legacy-27600
+
     if profit_legacy>=0:
-        st.write('최상급 오레하 융화 재료 : 제작 1칸 당 ',profit_legacy/100,'골드 이득')
+        legacy_result = '1칸 당 '+str(int(profit_legacy/100))+'골드 이득'
     else:
-        st.warning('최상급 오레하 융화 재료 : 손해')
-    st.subheader('낚시 제작')
-    st.write('현재 가격 = [ 오레하 태양 잉어 : {}골드, 자연산 진주 : {}골드, 붉은 살 생선 : {}골드, 생선 : {}골드 ]'.format(price('오레하 태양 잉어'),price('자연산 진주'),price('붉은 살 생선'),price('생선')))
+        legacy_result = '만들어 팔면 손해'
+    
+    col3.metric(label=legacy_1,value=legacy_result,delta=legacy_2,delta_color='off')
+    
+    
+    col4.subheader('낚시 제작')
+    fishing_1 = ('현재 가격 = [ 오레하 태양 잉어 : {}골드, 자연산 진주 : {}골드, 붉은 살 생선 : {}골드, 생선 : {}골드 ]'.format(price('오레하 태양 잉어'),price('자연산 진주'),price('붉은 살 생선'),price('생선')))
     if price('붉은 살 생선')*25/4 >= price('오레하 태양 잉어'):
         oreha_fishing = price('오레하 태양 잉어')
-        st.write('가루 교환 쓰지않음')
+        fishing_2 = '가루 교환 쓰지않음'
     else:
         oreha_fishing = price('붉은 살 생선')*25/4
-        st.write('가루 교환 사용')
+        fishing_2 = '가루 교환 사용'
     recipe_fishing = oreha_fishing*520 + price('자연산 진주')*640 + price('생선')*142
     profit_fishing = (oreha_value-oreha_charge)*1500 - recipe_fishing -27600
     if profit_fishing >= 0:
-        st.write('최상급 오레하 융화 재료 : 제작 1칸 당 ',int(profit_fishing/100),' 골드 이득')
+        fishing_result = '1칸 당 '+str(int(profit_fishing/100))+' 골드 이득'
     else:
-        st.warning('최상급 오레하 융화 재료 : 손해')
+        fishing_result = '만들어 팔면 손해'
+    col4.metric(label=fishing_1,value=fishing_result,delta=fishing_2,delta_color='off')
 
 
 with tab3:
