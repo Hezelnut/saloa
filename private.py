@@ -110,7 +110,7 @@ with tab2:
 
     col3, col4 = st.columns(2)
     col3.subheader('고고학 제작')
-    legacy_1 = ('현재 가격 = [ 오레하 유물 : {}골드, 희귀한 유물 : {}골드, 고대 유물 : {}골드 ]'.format(price('오레하 유물'),price('희귀한 유물'),price('고대 유물')))
+    legacy_1 = ('오레하 유물 : {}골드, 희귀한 유물 : {}골드, 고대 유물 : {}골드'.format(price('오레하 유물'),price('희귀한 유물'),price('고대 유물')))
     if price('희귀한 유물')*25/4 >= price('오레하 유물'):
         oreha_legacy = price('오레하 유물')
         legacy_2 = '가루 교환 쓰지않음'
@@ -129,7 +129,7 @@ with tab2:
     
     
     col4.subheader('낚시 제작')
-    fishing_1 = ('현재 가격 = [ 오레하 태양 잉어 : {}골드, 자연산 진주 : {}골드, 붉은 살 생선 : {}골드, 생선 : {}골드 ]'.format(price('오레하 태양 잉어'),price('자연산 진주'),price('붉은 살 생선'),price('생선')))
+    fishing_1 = ('오레하 태양 잉어 : {}골드, 자연산 진주 : {}골드, 붉은 살 생선 : {}골드, 생선 : {}골드'.format(price('오레하 태양 잉어'),price('자연산 진주'),price('붉은 살 생선'),price('생선')))
     if price('붉은 살 생선')*25/4 >= price('오레하 태양 잉어'):
         oreha_fishing = price('오레하 태양 잉어')
         fishing_2 = '가루 교환 쓰지않음'
