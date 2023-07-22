@@ -371,9 +371,9 @@ with tab5:
     st.write(df)
 
     if raid == '카양겔 하드':
-        st.write('[시련의 빛] 재료 교환 및 보석 교환 가치를 계산에 넣지않은 상태')
+        st.write('[시련의 빛] 재료 교환 및 보석 교환 벨류를 계산에 넣지 않은 상태')
     elif '일리아칸' in raid :
-        st.write('[쇠락의 눈동자] 재료 교환 가치를 계산에 넣지않은 상태')
+        st.write('[쇠락의 눈동자] 재료 교환 벨류를 계산에 넣지 않은 상태')
     else:pass
 
     st.subheader('컨텐츠 전체 밸류 : {} 골드'.format(int(sum(df_reward))))
