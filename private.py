@@ -217,7 +217,7 @@ with tab4:
         st.warning('암흑 수류탄 제작 : 손해')
         
 with tab5:
-    select_reward = st.multiselect('필요한 재료 선택',('명예의 파편','찬란한 명예의 돌파석','정제된 파괴강석','정제된 수호강석','혼돈의 돌'),['명예의 파편','찬란한 명예의 돌파석','정제된 파괴강석','정제된 수호강석','혼돈의 돌'])
+    select_reward = st.multiselect('필요한 재료 선택',('명예의 파편','찬란한 명예의 돌파석','정제된 파괴강석','정제된 수호강석','혼돈의 돌','클리어 골드'),['명예의 파편','찬란한 명예의 돌파석','정제된 파괴강석','정제된 수호강석','혼돈의 돌','클리어 골드'])
     if '정제된 수호강석' in select_reward:
         price_pr_1 = st.number_input('지역채팅 한 덩이(9999개) 가격',value=1500)
     raid = st.selectbox('컨텐츠',('아브렐슈드 하드','카양겔 하드','일리아칸 노말','일리아칸 하드','혼돈의 상아탑 노말','혼돈의 상아탑 하드'))
@@ -341,9 +341,14 @@ with tab5:
     for i in range(0,len(raid_name)):
         raid_gate = raid_name[i]
         raid_reward = st.session_state[raid_gate]['컨텐츠 보상']
-        reward_price = int(raid_reward['명예의 파편']*price_sh + raid_reward['정제된 파괴강석']*price_de + raid_reward['혼돈의 돌']*price_ch + raid_reward['찬란한 명예의 돌파석']*price_st + raid_reward['정제된 수호강석']*price_pr_2 + raid_reward['클리어 골드'])
+        if '클리어 골드' in select_reward:
+            reward_price = int(raid_reward['명예의 파편']*price_sh + raid_reward['정제된 파괴강석']*price_de + raid_reward['혼돈의 돌']*price_ch + raid_reward['찬란한 명예의 돌파석']*price_st + raid_reward['정제된 수호강석']*price_pr_2 + raid_reward['클리어 골드'])
+        else:
+            reward_price = int(raid_reward['명예의 파편']*price_sh + raid_reward['정제된 파괴강석']*price_de + raid_reward['혼돈의 돌']*price_ch + raid_reward['찬란한 명예의 돌파석']*price_st + raid_reward['정제된 수호강석']*price_pr_2)
+        
         raid_reward_plus = st.session_state[raid_gate]['더보기']
         break_even = raid_reward_plus['명예의 파편']*price_sh + raid_reward_plus['정제된 파괴강석']*price_de + raid_reward_plus['혼돈의 돌']*price_ch + raid_reward_plus['찬란한 명예의 돌파석']*price_st + raid_reward_plus['정제된 수호강석']*price_pr_2- raid_reward_plus['더보기 골드']
+        
         if break_even >= 0 :
             result = '더보기 이득 : {} 골드'.format(int(break_even))
             value_all = reward_price+break_even
