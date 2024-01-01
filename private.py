@@ -103,40 +103,67 @@ with tab1:
             oreha_charge = n+1
 
     col3, col4 = st.columns(2)
-    col3.subheader('고고학 제작')
-    legacy_1 = ('오레하 유물 : {}골드, 희귀한 유물 : {}골드, 고대 유물 : {}골드'.format(price('오레하 유물'),price('희귀한 유물'),price('고대 유물')))
-    if price('희귀한 유물')*25/4 >= price('오레하 유물'):
-        oreha_legacy = price('오레하 유물')
-        legacy_2 = '가루 교환 쓰지않음'
-    else:
-        oreha_legacy = price('희귀한 유물')*25/4
-        legacy_2 = '가루 교환 사용'
-    recipe_legacy = oreha_legacy*520 + price('희귀한 유물')*510 + price('고대 유물')*107
-    profit_legacy = (oreha_value_1-oreha_charge)*1500-recipe_legacy-27600
+    with col3:
+        st.subheader('고고학 제작')
+        slide_option_oreha_1 = (price('오레하 유물')-2,price('오레하 유물')-1,price('오레하 유물'),price('오레하 유물')+1,price('오레하 유물')+2)
+        oreha_recipe_blue_1 = st.selectbox('오레하 유물 가격',slide_option_oreha_1,index=2)
+        slide_option_oreha_2 = (price('희귀한 유물')-2,price('희귀한 유물')-1,price('희귀한 유물'),price('희귀한 유물')+1,price('희귀한 유물')+2)
+        oreha_recipe_green_1 = st.selectbox('희귀한 유물 가격',slide_option_oreha_2,index=2)
+        slide_option_oreha_3 = (price('고대 유물')-2,price('고대 유물')-1,price('고대 유물'),price('고대 유물')+1,price('고대 유물')+2)
+        oreha_recipe_white_1 = st.selectbox('고대 유물 가격',slide_option_oreha_3,index=2)
 
-    if profit_legacy>=0:
-        legacy_result = '1칸 당 '+str(int(profit_legacy/100))+'골드 이득'
-    else:
-        legacy_result = '만들어 팔면 손해'
+        if oreha_recipe_white_1 >= oreha_recipe_green_1*5:
+            if oreha_recipe_green_1*25/4 >= oreha_recipe_blue_1:
+                oreha_legacy = oreha_recipe_blue_1
+                legacy_2 = '가루 교환 쓰지않음'
+            else:
+                oreha_legacy = oreha_recipe_green_1*25/4
+                legacy_2 = '가루 교환 사용'
+        else:
+            if oreha_recipe_white_1*5/4 >= oreha_recipe_blue_1:
+                oreha_legacy = oreha_recipe_blue_1
+                legacy_2 = '가루 교환 쓰지않음'
+            else:
+                oreha_legacy = oreha_recipe_white_1*5/4
+                legacy_2 = '가루 교환 사용'
+
+        recipe_legacy = oreha_legacy*520 + oreha_recipe_green_1*510 + oreha_recipe_white_1*107
+        profit_legacy = (oreha_value_1-oreha_charge)*1500-recipe_legacy-27600
+
+        if profit_legacy>=0:
+            legacy_result = '1칸 당 '+str(int(profit_legacy/100))+'골드 이득'
+        else:
+            legacy_result = '만들어 팔면 손해'
+        
+        legacy_1 = ('오레하 유물 : {}골드, 희귀한 유물 : {}골드, 고대 유물 : {}골드'.format(oreha_recipe_blue_1,oreha_recipe_green_1,oreha_recipe_white_1))
+        
+        col3.metric(label=legacy_1,value=legacy_result,delta=legacy_2,delta_color='off')
     
-    col3.metric(label=legacy_1,value=legacy_result,delta=legacy_2,delta_color='off')
     
-    
-    col4.subheader('낚시 제작')
-    fishing_1 = ('오레하 태양 잉어 : {}골드, 자연산 진주 : {}골드, 붉은 살 생선 : {}골드, 생선 : {}골드'.format(price('오레하 태양 잉어'),price('자연산 진주'),price('붉은 살 생선'),price('생선')))
-    if price('붉은 살 생선')*25/4 >= price('오레하 태양 잉어'):
-        oreha_fishing = price('오레하 태양 잉어')
-        fishing_2 = '가루 교환 쓰지않음'
-    else:
-        oreha_fishing = price('붉은 살 생선')*25/4
-        fishing_2 = '가루 교환 사용'
-    recipe_fishing = oreha_fishing*520 + price('자연산 진주')*640 + price('생선')*142
-    profit_fishing = (oreha_value_1-oreha_charge)*1500 - recipe_fishing -27600
-    if profit_fishing >= 0:
-        fishing_result = '1칸 당 '+str(int(profit_fishing/100))+' 골드 이득'
-    else:
-        fishing_result = '만들어 팔면 손해'
-    col4.metric(label=fishing_1,value=fishing_result,delta=fishing_2,delta_color='off')
+    with col4:
+        st.subheader('낚시 제작')
+        slide_option_fish_1 = (price('오레하 태양 잉어')-2,price('오레하 태양 잉어')-1,price('오레하 태양 잉어'),price('오레하 태양 잉어')+1,price('오레하 태양 잉어')+2)
+        oreha_recipe_blue_2 = st.selectbox('오레하 태양 잉어 가격',slide_option_fish_1,index=2)
+        slide_option_fish_2 = (price('붉은 살 생선')-2,price('붉은 살 생선')-1,price('붉은 살 생선'),price('붉은 살 생선')+1,price('붉은 살 생선')+2)
+        oreha_recipe_green_2 = st.selectbox('붉은 살 생선 가격',slide_option_fish_2,index=2)
+        slide_option_fish_3 = (price('생선')-2,price('생선')-1,price('생선'),price('생선')+1,price('생선')+2)
+        oreha_recipe_white_2 = st.selectbox('생선 가격',slide_option_fish_3,index=2)
+
+        fishing_1 = ('오레하 태양 잉어 : {}골드, 자연산 진주 : {}골드, 붉은 살 생선 : {}골드, 생선 : {}골드'.format(oreha_recipe_blue_2,price('자연산 진주'),oreha_recipe_green_2,oreha_recipe_white_2))
+        
+        if oreha_recipe_green_2*25/4 >= oreha_recipe_blue_2:
+            oreha_fishing = oreha_recipe_blue_2
+            fishing_2 = '가루 교환 쓰지않음'
+        else:
+            oreha_fishing = oreha_recipe_green_2*25/4
+            fishing_2 = '가루 교환 사용'
+        recipe_fishing = oreha_fishing*520 + oreha_recipe_green_2*640 + oreha_recipe_white_2*142
+        profit_fishing = (oreha_value_1-oreha_charge)*1500 - recipe_fishing -27600
+        if profit_fishing >= 0:
+            fishing_result = '1칸 당 '+str(int(profit_fishing/100))+' 골드 이득'
+        else:
+            fishing_result = '만들어 팔면 손해'
+        col4.metric(label=fishing_1,value=fishing_result,delta=fishing_2,delta_color='off')
 
 with tab2:
     st.write('상급 오레하 융화 재료 가격 : ',price('상급 오레하 융화 재료'),'골드')
