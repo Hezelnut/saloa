@@ -118,14 +118,14 @@ with tab1:
                 legacy_2 = '가루 교환 쓰지않음'
             else:
                 oreha_legacy = oreha_recipe_green_1*25/4
-                legacy_2 = '가루 교환 사용'
+                legacy_2 = '가루 교환 사용 (희귀한유물)'
         else:
             if oreha_recipe_white_1*5/4 >= oreha_recipe_blue_1:
                 oreha_legacy = oreha_recipe_blue_1
                 legacy_2 = '가루 교환 쓰지않음'
             else:
                 oreha_legacy = oreha_recipe_white_1*5/4
-                legacy_2 = '가루 교환 사용'
+                legacy_2 = '가루 교환 사용 (고대 유물)'
 
         recipe_legacy = oreha_legacy*520 + oreha_recipe_green_1*510 + oreha_recipe_white_1*107
         profit_legacy = (oreha_value_1-oreha_charge)*1500-recipe_legacy-27600
