@@ -296,10 +296,10 @@ with tab4:
         st.session_state['카멘 하드'] = ['카멘 하드1관문','카멘 하드2관문','카멘 하드3관문','카멘 하드4관문']
 
     if '에키드나 노말' not in st.session_state:
-    st.session_state['에키드나 노말'] = ['에키드나 노말1관문','에키드나 노말2관문']
+        st.session_state['에키드나 노말'] = ['에키드나 노말1관문','에키드나 노말2관문']
     
     if '에키드나 하드' not in st.session_state:
-    st.session_state['에키드나 하드'] = ['에키드나 하드1관문','에키드나 하드2관문']
+        st.session_state['에키드나 하드'] = ['에키드나 하드1관문','에키드나 하드2관문']
 
     #레이드 보상
 
