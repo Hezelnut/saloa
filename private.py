@@ -447,7 +447,7 @@ with tab4:
 with tab5:
     #'PC방 패키지' = 명파(대)200개 + 찬명돌600개 + 최상레하250개, 33000원
     #'주간 성장재료 패키지' = 명패(대)60개 + 찬명돌200개 + 최상레하500개, 22000원
-    gold_value = st.number_input('거래비율 100:__',70) / 100
+    gold_value = st.number_input('거래비율 100:__',value=70) / 100
 
     discount = st.checkbox('문화상품권 특가할인 적용한다면 체크')
     if discount:
