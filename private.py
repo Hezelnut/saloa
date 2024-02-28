@@ -474,12 +474,14 @@ with tab5:
         st.write('PC방 패키지, 33000원')
         pc_package_gold = package_orh*250 + package_sh*200 + package_st*600
         pc_package_money = 33000*(100-discount_rate)/100
+        st.write('골드 가치 : {} 골드'.format(int(pc_package_gold)))
         st.write('골드 이득 : {} 골드'.format(int(pc_package_gold - pc_package_money/gold_value)))
         st.write('현금 이득 : {} 원'.format(int(pc_package_gold*gold_value - pc_package_money)))
     with col6:
-        st.write('주간 성장재료 패키지, 22000원')
+        st.write('주간 성장재료 패키지, 22000원, 실링 제외')
         weekly_package_gold = package_orh*500 + package_sh*60 + package_st*200
         weekly_package_money = 22000*(100-discount_rate)/100
+        st.write('골드 가치 : {} 골드'.format(int(weekly_package_gold)))
         st.write('골드 이득 : {} 골드'.format(int(weekly_package_gold - weekly_package_money/gold_value)))
         st.write('현금 이득 : {} 원'.format(int(weekly_package_gold*gold_value - weekly_package_money)))
 
