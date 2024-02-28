@@ -451,7 +451,7 @@ with tab5:
 
     discount = st.checkbox('문화상품권 특가할인 적용한다면 체크')
     if discount:
-        discount_rate = st.number_input('특가 % 수치',value=6,min_value=0,max_value=10)
+        discount_rate = st.number_input('특가 % 수치',value=6, min_value=0, max_value=10)
     else:
         discount_rate = 0
 
@@ -471,15 +471,17 @@ with tab5:
 
     col5, col6  = st.columns(2)
     with col5:
-        st.write('PC방 패키지')
+        st.write('PC방 패키지, 33000원')
         pc_package_gold = package_orh*250 + package_sh*200 + package_st*600
         pc_package_money = 33000*(100-discount_rate)/100
-        st.write('골드 이득 : {} 골드'.format(pc_package_gold - pc_package_money/gold_value))
+        st.write('골드 이득 : {} 골드'.format(int(pc_package_gold - pc_package_money/gold_value)))
+        st.write('현금 이득 : {} 원'.format(int(pc_package_gold*gold_value - pc_package_money)))
     with col6:
-        st.write('주간 성장재료 패키지')
+        st.write('주간 성장재료 패키지, 22000원')
         weekly_package_gold = package_orh*500 + package_sh*60 + package_st*200
         weekly_package_money = 22000*(100-discount_rate)/100
-        st.write('골드 이득 : {} 골드'.format(weekly_package_gold - weekly_package_money/gold_value))
+        st.write('골드 이득 : {} 골드'.format(int(weekly_package_gold - weekly_package_money/gold_value)))
+        st.write('현금 이득 : {} 원'.format(int(weekly_package_gold*gold_value - weekly_package_money)))
 
 
 
