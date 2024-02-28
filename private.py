@@ -91,7 +91,7 @@ def charge(args):
         if n+1>=database()[1][args]*0.05>n:
             return n+1
         
-tab1, tab2, tab3, tab4, tab5 = st.tabs(['최상급 오레하 제작','상급 오레하 제작','배틀아이템 공장','컨텐츠 손익','경매 입찰가격'])
+tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(['최상급 오레하 제작','상급 오레하 제작','배틀아이템 공장','컨텐츠 손익','패키지 효율','경매 입찰가격'])
 
 with tab1:
     st.write('최상급 오레하 융화 재료 가격 : ',price('최상급 오레하 융화 재료'),'골드')
@@ -241,7 +241,7 @@ with tab4:
     select_reward = st.multiselect('필요한 재료 선택',('클리어 골드','명예의 파편','찬란한 명예의 돌파석','정제된 파괴강석','정제된 수호강석','혼돈의 돌'),['클리어 골드','명예의 파편','찬란한 명예의 돌파석','정제된 파괴강석','정제된 수호강석','혼돈의 돌'])
     if '정제된 수호강석' in select_reward:
         price_pr_1 = st.number_input('지역채팅 한 덩이(9999개) 가격',value=1500)
-    raid = st.selectbox('컨텐츠',('아브렐슈드 하드','카양겔 하드','일리아칸 노말','일리아칸 하드','혼돈의 상아탑 노말','혼돈의 상아탑 하드','카멘 노말','카멘 하드','에키드나 노말','에키드나 하드'))
+    raid = st.selectbox('컨텐츠',('아브렐슈드 하드','카양겔 하드','일리아칸 노말','일리아칸 하드','혼돈의 상아탑 노말','혼돈의 상아탑 하드','카멘 노말','카멘 하드'))
     
     if '명예의 파편' in select_reward:
         price_sh = price('명예의 파편 주머니(대)')/1500
@@ -445,6 +445,46 @@ with tab4:
     st.subheader('컨텐츠 전체 밸류 : {} 골드'.format(int(sum(df_reward))))
 
 with tab5:
+    #'PC방 패키지' = 명파(대)200개 + 찬명돌600개 + 최상레하250개, 33000원
+    #'주간 성장재료 패키지' = 명패(대)60개 + 찬명돌200개 + 최상레하500개, 22000원
+    gold_value = st.number_input('거래비율 100:__',70) / 100
+
+    discount = st.checkbox('문화상품권 특가할인 적용한다면 체크')
+    if discount:
+        discount_rate = st.number_input('특가 % 수치',6)
+    else:
+        discount_rate = 0
+
+    select_package = st.multiselect('필요한 재료 선택',('명예의 파편','찬란한 명예의 돌파석','최상급 오레하 융화 재료'),['명예의 파편','찬란한 명예의 돌파석','최상급 오레하 융화 재료'])
+    if '명예의 파편' in select_package:
+        package_sh = price('명예의 파편 주머니(대)')
+    else :
+        package_sh = 0
+    if '찬란한 명예의 돌파석' in select_package:
+        package_st = price('찬란한 명예의 돌파석')
+    else :
+        package_st = 0
+    if '최상급 오레하 융화 재료' in select_package:
+        package_orh = price('최상급 오레하 융화 재료')
+    else :
+        package_orh = 0
+
+    col5, col6  = st.columns(2)
+    with col5:
+        st.write('PC방 패키지')
+        pc_package_gold = package_orh*250 + package_sh*200 + package_st*600
+        pc_package_money = 33000*(100-discount_rate)/100
+        st.write('골드 이득 : {} 골드'.format(pc_package_gold - pc_package_money/gold_value))
+    with col6:
+        st.write('주간 성장재료 패키지')
+        weekly_package_gold = package_orh*500 + package_sh*60 + package_st*200
+        weekly_package_money = 22000*(100-discount_rate)/100
+        st.write('골드 이득 : {} 골드'.format(weekly_package_gold - weekly_package_money/gold_value))
+
+
+
+
+with tab6:
     radio = st.radio("컨텐츠 종류",('4인 컨텐츠','8인 컨텐츠','3인 버스','4인 버스','5인 버스'))
     bid = st.number_input("경매품 가격을 입력하세요")
     if bid == 0.00 :
