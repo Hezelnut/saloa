@@ -451,7 +451,7 @@ with tab5:
 
     discount = st.checkbox('문화상품권 특가할인 적용한다면 체크')
     if discount:
-        discount_rate = st.number_input('특가 % 수치',6)
+        discount_rate = st.number_input('특가 % 수치',6,min_value=0,max_value=10)
     else:
         discount_rate = 0
 
