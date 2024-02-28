@@ -236,6 +236,22 @@ with tab3:
         st.write('암흑 수류탄 : 제작 1칸 당 ',battle_5/10,' 골드 이득')
     else:
         st.warning('암흑 수류탄 제작 : 손해')
+
+    st.subheader('성스러운 부적')
+    st.write('성스러운 부적 : ',price('성스러운 부적'),'골드')
+    battle_6 = (price('성스러운 부적')-charge('성스러운 부적'))*30 - (price('화려한 버섯')*3+price('싱싱한 버섯')*18+price('투박한 버섯')*3 + 140)
+    if battle_6 >= 0:
+        st.write('성스러운 부적 : 제작 1칸 당 ',battle_6/10,' 골드 이득')
+    else:
+        st.warning('성스러운 부적 제작 : 손해')
+
+    st.subheader('빛나는 성스러운 부적')
+    st.write('빛나는 성스러운 부적 : ',price('빛나는 성스러운 부적'),'골드')
+    battle_7 = (price('빛나는 성스러운 부적')-charge('빛나는 성스러운 부적'))*20 - (price('성스러운 부적')*30 + price('화려한 버섯')*3 + 140)
+    if battle_7 >= 0:
+        st.write('빛나는 성스러운 부적 : 제작 1칸 당 ',battle_7/10,' 골드 이득')
+    else:
+        st.warning('빛나는 성스러운 부적 제작 : 손해')
         
 with tab4:
     select_reward = st.multiselect('필요한 재료 선택',('클리어 골드','명예의 파편','찬란한 명예의 돌파석','정제된 파괴강석','정제된 수호강석','혼돈의 돌'),['클리어 골드','명예의 파편','찬란한 명예의 돌파석','정제된 파괴강석','정제된 수호강석','혼돈의 돌'])
