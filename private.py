@@ -149,7 +149,7 @@ with tab1:
         slide_option_fish_3 = (price('생선')-2,price('생선')-1,price('생선'),price('생선')+1,price('생선')+2)
         oreha_recipe_white_2 = st.selectbox('생선 가격',slide_option_fish_3,index=2)
 
-        fishing_1 = ('오레하 태양 잉어 : {}골드, 자연산 진주 : {}골드, 붉은 살 생선 : {}골드, 생선 : {}골드'.format(oreha_recipe_blue_2,price('자연산 진주'),oreha_recipe_green_2,oreha_recipe_white_2))
+        fishing_1 = ('오레하 태양 잉어 : {}골드, 붉은 살 생선 : {}골드, 생선 : {}골드'.format(oreha_recipe_blue_2,oreha_recipe_green_2,oreha_recipe_white_2))
         
         if oreha_recipe_green_2*2.5/4 >= oreha_recipe_blue_2:
             oreha_fishing = oreha_recipe_blue_2
