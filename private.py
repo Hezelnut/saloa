@@ -113,18 +113,18 @@ with tab1:
         oreha_recipe_white_1 = st.selectbox('고대 유물 가격',slide_option_oreha_3,index=2)
 
         if oreha_recipe_white_1*2 >= oreha_recipe_green_1:
-            if oreha_recipe_green_1*2.5/4 >= oreha_recipe_blue_1:
+            if oreha_recipe_green_1*6.25 >= oreha_recipe_blue_1:
                 oreha_legacy = oreha_recipe_blue_1
                 oreha_change_tf = '가루 교환 쓰지않음'
             else:
-                oreha_legacy = oreha_recipe_green_1*2.5/4
+                oreha_legacy = oreha_recipe_green_1*6.25
                 oreha_change_tf = '가루 교환 사용 (희귀한유물)'
         else:
             if oreha_recipe_white_1*5/4 >= oreha_recipe_blue_1/10:
                 oreha_legacy = oreha_recipe_blue_1
                 oreha_change_tf = '가루 교환 쓰지않음'
             else:
-                oreha_legacy = oreha_recipe_white_1*5/4
+                oreha_legacy = oreha_recipe_white_1*50/4
                 oreha_change_tf = '가루 교환 사용 (고대 유물)'
 
         recipe_legacy = oreha_legacy*52 + oreha_recipe_green_1*51 + oreha_recipe_white_1*107
@@ -151,12 +151,16 @@ with tab1:
 
         fishing_1 = ('오레하 태양 잉어 : {}골드, 붉은 살 생선 : {}골드, 생선 : {}골드'.format(oreha_recipe_blue_2,oreha_recipe_green_2,oreha_recipe_white_2))
         
-        if oreha_recipe_green_2*2.5/4 >= oreha_recipe_blue_2:
+        if oreha_recipe_green_2*6.25 >= oreha_recipe_blue_2:
             oreha_fishing = oreha_recipe_blue_2
             fishing_2 = '가루 교환 쓰지않음'
         else:
-            oreha_fishing = oreha_recipe_green_2*2.5/4
-            fishing_2 = '가루 교환 사용'
+            if oreha_recipe_green_2 >= oreha_recipe_white_2*2:
+                oreha_fishing = oreha_recipe_white_2*12.5
+                fishing_2 = '가루 교환 사용 (생선)'
+            else:
+                oreha_fishing = oreha_recipe_green_2*6.25
+                fishing_2 = '가루 교환 사용 (붉은 살 생선)'
         recipe_fishing = oreha_fishing*52 + oreha_recipe_green_2*64 + oreha_recipe_white_2*142
         profit_fishing = (oreha_value_1-oreha_charge)*1500 - recipe_fishing -27600
         if profit_fishing >= 0:
@@ -177,12 +181,16 @@ with tab2:
 
     st.subheader('고고학 제작')
     avidos_list_legacy = ('아비도스 유물 : {}골드, 희귀한 유물 : {}골드, 고대 유물 : {}골드'.format(price('아비도스 유물'),price('희귀한 유물'),price('고대 유물')))
-    if price('희귀한 유물')*2.5/4 >= price('아비도스 유물'):
+    if price('희귀한 유물')*6.25 >= price('아비도스 유물'):
         avidos_legacy = price('아비도스 유물')
         avidos_legacy_change = '가루 교환 쓰지않음'
     else:
-        avidos_legacy = price('희귀한 유물')*2.5/4
-        avidos_legacy_change = '가루 교환 사용'
+        if price('희귀한 유물') >= price('고대 유물')*2:
+            avidos_legacy = price('고대 유물')*12.5
+            avidos_legacy_change = '가루 교환 사용 (고대 유물)'
+        else:    
+            avidos_legacy = price('희귀한 유물')*6.25
+            avidos_legacy_change = '가루 교환 사용 (희귀한 유물)'
     avidos_recipe_legacy = avidos_legacy*33 + price('희귀한 유물')*45 + price('고대 유물')*86
     avidos_legacy_profit = (avidos_value_1-avidos_charge_1)*1000-avidos_recipe_legacy-36800
 
@@ -195,22 +203,26 @@ with tab2:
 
 
     st.subheader('채집 제작')
-    avidos_list_flower = ('아비도스 들꽃 : {}골드, 수줍은 들꽃 : {}골드, 들꽃 : {}골드'.format(price('아비도스 들꽃'),price('화사한 들꽃'),price('들꽃')))
-    if price('화사한 들꽃')*2.5/4 >= price('아비도스 들꽃'):
+    avidos_list_flower = ('아비도스 들꽃 : {}골드, 수줍은 들꽃 : {}골드, 들꽃 : {}골드'.format(price('아비도스 들꽃'),price('수줍은 들꽃'),price('들꽃')))
+    if price('수줍은 들꽃')*6.25 >= price('아비도스 들꽃'):
         avidos_flower = price('아비도스 들꽃')
         avidos_flower_change = '가루 교환 쓰지않음'
     else:
-        avidos_legacy = price('화사한 들꽃')*2.5/4
-        avidos_flower_change = '가루 교환 사용'
-    avidos_recipe_legacy = avidos_legacy*33 + price('화사한 들꽃')*45 + price('들꽃')*86
-    avidos_legacy_profit = (avidos_value_1-avidos_charge_1)*1000-avidos_recipe_legacy-36800
+        if price('수줍은 들꽃') >= price('들꽃')*2:
+            avidos_flower_change = '가루 교환 사용 (들꽃)'
+            avidos_flower = price('들꽃')*12.5
+        else:
+            avidos_flower = price('수줍은 들꽃')*6.25
+            avidos_flower_change = '가루 교환 사용 (수줍은 들꽃)'
+    avidos_recipe_flower = avidos_flower*33 + price('수줍은 들꽃')*45 + price('들꽃')*86
+    avidos_flower_profit = (avidos_value_1-avidos_charge_1)*1000-avidos_recipe_flower-36800
 
-    if avidos_legacy_profit>=0:
-        avidos_legacy_result = '1칸 당 '+str(int(avidos_legacy_profit/100))+'골드 이득'
+    if avidos_flower_profit>=0:
+        avidos_flower_result = '1칸 당 '+str(int(avidos_flower_profit/100))+'골드 이득'
     else:
-        avidos_legacy_result = '만들어 팔면 손해'
+        avidos_flower_result = '만들어 팔면 손해'
     
-    st.metric(label=avidos_list_flower,value=avidos_legacy_result,delta=avidos_flower_change,delta_color='off')
+    st.metric(label=avidos_list_flower,value=avidos_flower_result,delta=avidos_flower_change,delta_color='off')
     
 
 with tab3:
