@@ -120,7 +120,7 @@ with tab1:
                 oreha_legacy = oreha_recipe_green_1*6.25
                 oreha_change_tf = '가루 교환 사용 (희귀한유물)'
         else:
-            if oreha_recipe_white_1*5/4 >= oreha_recipe_blue_1/10:
+            if oreha_recipe_white_1*12.5 >= oreha_recipe_blue_1/10:
                 oreha_legacy = oreha_recipe_blue_1
                 oreha_change_tf = '가루 교환 쓰지않음'
             else:
