@@ -170,6 +170,7 @@ with tab1:
         col4.metric(label=fishing_1,value=fishing_result,delta=fishing_2,delta_color='off')
 
 with tab2:
+    
     st.write('아비도스 재료 가격 : ',price('아비도스 융화 재료'),'골드')
     st.write('제작 수수료 기준 : ',int(368),'골드')
     avidos_option_1 = (price('아비도스 융화 재료')-2,price('아비도스 융화 재료')-1,price('아비도스 융화 재료'),price('아비도스 융화 재료')+1,price('아비도스 융화 재료')+2)
@@ -177,52 +178,155 @@ with tab2:
     for n in range(0,avidos_value_1):
         if n+1>=avidos_value_1*0.05>n:
             avidos_charge_1 = n+1
-
-
-    st.subheader('고고학 제작')
-    avidos_list_legacy = ('아비도스 유물 : {}골드, 희귀한 유물 : {}골드, 고대 유물 : {}골드'.format(price('아비도스 유물'),price('희귀한 유물'),price('고대 유물')))
-    if price('희귀한 유물')*6.25 >= price('아비도스 유물'):
-        avidos_legacy = price('아비도스 유물')
-        avidos_legacy_change = '가루 교환 쓰지않음'
-    else:
-        if price('희귀한 유물') >= price('고대 유물')*2:
-            avidos_legacy = price('고대 유물')*12.5
-            avidos_legacy_change = '가루 교환 사용 (고대 유물)'
-        else:    
-            avidos_legacy = price('희귀한 유물')*6.25
-            avidos_legacy_change = '가루 교환 사용 (희귀한 유물)'
-    avidos_recipe_legacy = avidos_legacy*33 + price('희귀한 유물')*45 + price('고대 유물')*86
-    avidos_legacy_profit = (avidos_value_1-avidos_charge_1)*1000-avidos_recipe_legacy-36800
-
-    if avidos_legacy_profit>=0:
-        avidos_legacy_result = '1칸 당 '+str(int(avidos_legacy_profit/100))+'골드 이득'
-    else:
-        avidos_legacy_result = '만들어 팔면 손해'
     
-    st.metric(label=avidos_list_legacy,value=avidos_legacy_result,delta=avidos_legacy_change,delta_color='off')
+    st.write('')
+    st.write('')
 
+    col_avidos_1,col_avidos_2 = st.columns(2)
+    with col_avidos_1:
 
-    st.subheader('채집 제작')
-    avidos_list_flower = ('아비도스 들꽃 : {}골드, 수줍은 들꽃 : {}골드, 들꽃 : {}골드'.format(price('아비도스 들꽃'),price('수줍은 들꽃'),price('들꽃')))
-    if price('수줍은 들꽃')*6.25 >= price('아비도스 들꽃'):
-        avidos_flower = price('아비도스 들꽃')
-        avidos_flower_change = '가루 교환 쓰지않음'
-    else:
-        if price('수줍은 들꽃') >= price('들꽃')*2:
-            avidos_flower_change = '가루 교환 사용 (들꽃)'
-            avidos_flower = price('들꽃')*12.5
+        st.subheader('고고학 제작')
+        avidos_list_legacy = ('아비도스 유물 : {}골드, 희귀한 유물 : {}골드, 고대 유물 : {}골드'.format(price('아비도스 유물'),price('희귀한 유물'),price('고대 유물')))
+        if price('희귀한 유물')*6.25 >= price('아비도스 유물'):
+            avidos_legacy = price('아비도스 유물')
+            avidos_legacy_change = '가루 교환 쓰지않음'
         else:
-            avidos_flower = price('수줍은 들꽃')*6.25
-            avidos_flower_change = '가루 교환 사용 (수줍은 들꽃)'
-    avidos_recipe_flower = avidos_flower*33 + price('수줍은 들꽃')*45 + price('들꽃')*86
-    avidos_flower_profit = (avidos_value_1-avidos_charge_1)*1000-avidos_recipe_flower-36800
+            if price('희귀한 유물') >= price('고대 유물')*2:
+                avidos_legacy = price('고대 유물')*12.5
+                avidos_legacy_change = '가루 교환 사용 (고대 유물)'
+            else:    
+                avidos_legacy = price('희귀한 유물')*6.25
+                avidos_legacy_change = '가루 교환 사용 (희귀한 유물)'
+        avidos_recipe_legacy = avidos_legacy*33 + price('희귀한 유물')*45 + price('고대 유물')*86
+        avidos_legacy_profit = (avidos_value_1-avidos_charge_1)*1000-avidos_recipe_legacy-36800
 
-    if avidos_flower_profit>=0:
-        avidos_flower_result = '1칸 당 '+str(int(avidos_flower_profit/100))+'골드 이득'
-    else:
-        avidos_flower_result = '만들어 팔면 손해'
+        if avidos_legacy_profit>=0:
+            avidos_legacy_result = '1칸 당 '+str(int(avidos_legacy_profit/100))+'골드 이득'
+        else:
+            avidos_legacy_result = '만들어 팔면 손해'
+        
+        st.metric(label=avidos_list_legacy,value=avidos_legacy_result,delta=avidos_legacy_change,delta_color='off')
+
+        st.write('')
+
+        st.subheader('채집 제작')
+        avidos_list_flower = ('아비도스 들꽃 : {}골드, 수줍은 들꽃 : {}골드, 들꽃 : {}골드'.format(price('아비도스 들꽃'),price('수줍은 들꽃'),price('들꽃')))
+        if price('수줍은 들꽃')*6.25 >= price('아비도스 들꽃'):
+            avidos_flower = price('아비도스 들꽃')
+            avidos_flower_change = '가루 교환 쓰지않음'
+        else:
+            if price('수줍은 들꽃') >= price('들꽃')*2:
+                avidos_flower_change = '가루 교환 사용 (들꽃)'
+                avidos_flower = price('들꽃')*12.5
+            else:
+                avidos_flower = price('수줍은 들꽃')*6.25
+                avidos_flower_change = '가루 교환 사용 (수줍은 들꽃)'
+        avidos_recipe_flower = avidos_flower*33 + price('수줍은 들꽃')*45 + price('들꽃')*86
+        avidos_flower_profit = (avidos_value_1-avidos_charge_1)*1000-avidos_recipe_flower-36800
+
+        if avidos_flower_profit>=0:
+            avidos_flower_result = '1칸 당 '+str(int(avidos_flower_profit/100))+'골드 이득'
+        else:
+            avidos_flower_result = '만들어 팔면 손해'
+        
+        st.metric(label=avidos_list_flower,value=avidos_flower_result,delta=avidos_flower_change,delta_color='off')
+
+        st.write('')
+
+        st.subheader('수렵 제작')
+        avidos_list_hunting = ('아비도스 두툼한 생고기 : {}골드, 다듬은 생고기 : {}골드, 두툼한 생고기 : {}골드'.format(price('아비도스 두툼한 생고기'),price('다듬은 생고기'),price('두툼한 생고기')))
+        if price('다듬은 생고기')*6.25 >= price('아비도스 두툼한 생고기'):
+            avidos_hunting = price('아비도스 두툼한 생고기')
+            avidos_hunting_change = '가루 교환 쓰지않음'
+        else:
+            if price('다듬은 생고기') >= price('두툼한 생고기')*2:
+                avidos_hunting_change = '가루 교환 사용 (두툼한 생고기)'
+                avidos_hunting = price('두툼한 생고기')*12.5
+            else:
+                avidos_hunting = price('다듬은 생고기')*6.25
+                avidos_hunting_change = '가루 교환 사용 (다듬은 생고기)'
+        avidos_recipe_hunting = avidos_hunting*33 + price('다듬은 생고기')*45 + price('두툼한 생고기')*86
+        avidos_hunting_profit = (avidos_value_1-avidos_charge_1)*1000-avidos_recipe_hunting-36800
+
+        if avidos_hunting_profit>=0:
+            avidos_hunting_result = '1칸 당 '+str(int(avidos_hunting_profit/100))+'골드 이득'
+        else:
+            avidos_hunting_result = '만들어 팔면 손해'
+        
+        st.metric(label=avidos_list_hunting,value=avidos_hunting_result,delta=avidos_hunting_change,delta_color='off')
     
-    st.metric(label=avidos_list_flower,value=avidos_flower_result,delta=avidos_flower_change,delta_color='off')
+    with col_avidos_2:
+
+        st.subheader('낚시 제작')
+        avidos_list_fishing = ('아비도스 태양 잉어 : {}골드, 붉은 살 생선 : {}골드, 생선 : {}골드'.format(price('아비도스 태양 잉어'),price('붉은 살 생선'),price('생선')))
+        if price('붉은 살 생선')*6.25 >= price('아비도스 태양 잉어'):
+            avidos_fishing = price('아비도스 태양 잉어')
+            avidos_fishing_change = '가루 교환 쓰지않음'
+        else:
+            if price('붉은 살 생선') >= price('생선')*2:
+                avidos_fishing = price('생선')*12.5
+                avidos_fishing_change = '가루 교환 사용 (생선)'
+            else:    
+                avidos_fishing = price('붉은 살 생선')*6.25
+                avidos_fishing_change = '가루 교환 사용 (붉은 살 생선)'
+        avidos_recipe_fishing = avidos_fishing*33 + price('붉은 살 생선')*45 + price('생선')*86
+        avidos_fishing_profit = (avidos_value_1-avidos_charge_1)*1000-avidos_recipe_fishing-36800
+
+        if avidos_fishing_profit>=0:
+            avidos_fishing_result = '1칸 당 '+str(int(avidos_fishing_profit/100))+'골드 이득'
+        else:
+            avidos_fishing_result = '만들어 팔면 손해'
+        
+        st.metric(label=avidos_list_fishing,value=avidos_fishing_result,delta=avidos_fishing_change,delta_color='off')
+
+        st.write('')
+
+        st.subheader('벌목 제작')
+        avidos_list_tree = ('아비도스 목재 : {}골드, 부드러운 목재 : {}골드, 목재 : {}골드'.format(price('아비도스 목재'),price('부드러운 목재'),price('목재')))
+        if price('부드러운 목재')*6.25 >= price('아비도스 목재'):
+            avidos_tree = price('아비도스 목재')
+            avidos_tree_change = '가루 교환 쓰지않음'
+        else:
+            if price('부드러운 목재') >= price('목재')*2:
+                avidos_tree_change = '가루 교환 사용 (목재)'
+                avidos_tree = price('목재')*12.5
+            else:
+                avidos_tree = price('부드러운 목재')*6.25
+                avidos_tree_change = '가루 교환 사용 (부드러운 목재)'
+        avidos_recipe_tree = avidos_tree*33 + price('부드러운 목재')*45 + price('목재')*86
+        avidos_tree_profit = (avidos_value_1-avidos_charge_1)*1000-avidos_recipe_tree-36800
+
+        if avidos_tree_profit>=0:
+            avidos_tree_result = '1칸 당 '+str(int(avidos_tree_profit/100))+'골드 이득'
+        else:
+            avidos_tree_result = '만들어 팔면 손해'
+        
+        st.metric(label=avidos_list_tree,value=avidos_tree_result,delta=avidos_tree_change,delta_color='off')
+
+        st.write('')
+
+        st.subheader('채광 제작')
+        avidos_list_mining = ('아비도스 철광석 : {}골드, 묵직한 철광석 : {}골드, 철광석 : {}골드'.format(price('아비도스 철광석'),price('묵직한 철광석'),price('철광석')))
+        if price('묵직한 철광석')*6.25 >= price('아비도스 철광석'):
+            avidos_mining = price('아비도스 철광석')
+            avidos_mining_change = '가루 교환 쓰지않음'
+        else:
+            if price('묵직한 철광석') >= price('철광석')*2:
+                avidos_mining_change = '가루 교환 사용 (철광석)'
+                avidos_mining = price('철광석')*12.5
+            else:
+                avidos_mining = price('묵직한 철광석')*6.25
+                avidos_mining_change = '가루 교환 사용 (묵직한 철광석)'
+        avidos_recipe_mining = avidos_mining*33 + price('묵직한 철광석')*45 + price('철광석')*86
+        avidos_mining_profit = (avidos_value_1-avidos_charge_1)*1000-avidos_recipe_mining-36800
+
+        if avidos_mining_profit>=0:
+            avidos_mining_result = '1칸 당 '+str(int(avidos_mining_profit/100))+'골드 이득'
+        else:
+            avidos_mining_result = '만들어 팔면 손해'
+        
+        st.metric(label=avidos_list_mining,value=avidos_mining_result,delta=avidos_mining_change,delta_color='off')
+    
     
 
 with tab3:
