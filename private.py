@@ -120,7 +120,7 @@ with tab1:
                 oreha_legacy = oreha_recipe_green_1*6.25
                 oreha_change_tf = '가루 교환 사용 (희귀한유물)'
         else:
-            if oreha_recipe_white_1*12.5 >= oreha_recipe_blue_1/10:
+            if oreha_recipe_white_1*5/4 >= oreha_recipe_blue_1/10:
                 oreha_legacy = oreha_recipe_blue_1
                 oreha_change_tf = '가루 교환 쓰지않음'
             else:
@@ -226,64 +226,63 @@ with tab2:
     
 
 with tab3:
-    '''
     st.subheader('정령의 회복약')
     st.write('정령의 회복약 가격 : ',price('정령의 회복약'),'골드')
-    battle_1 = (price('정령의 회복약')-charge('정령의 회복약'))*30 - (price('화사한 들꽃')*6 + price('수줍은 들꽃')*24 + price('들꽃')*5 + 260)
+    battle_1 = (price('정령의 회복약')-charge('정령의 회복약'))*300 - (price('화사한 들꽃')*8 + price('수줍은 들꽃')*25 + price('들꽃')*33 + 2600)
     if battle_1 >= 0:
-        st.write('정령의 회복약 : 제작 1칸 당 ',int(battle_1/10),' 골드 이득')
+        st.write('정령의 회복약 : 제작 1칸 당 ',int(battle_1/100),' 골드 이득')
     else:
         st.warning('정령의 회복약 제작 : 손해')
     
     st.subheader('각성 물약')
     st.write('각성 물약 : ',price('각성 물약'),'골드')
-    battle_2 = (price('각성 물약')-charge('각성 물약'))*30 - (price('화려한 버섯')*5 + price('싱싱한 버섯')*20 + price('튼튼한 목재')*2 + price('희귀한 유물')*4 + price('투박한 버섯')*4 + 260)
+    battle_2 = (price('각성 물약')-charge('각성 물약'))*300 - (price('진귀한 유물')*8 + price('희귀한 유물')*24 + price('고대 유물')*32 + 2600)
     if battle_2 >= 0:
-        st.write('각성 물약 : 제작 1칸 당 ',battle_2/10,' 골드 이득')
+        st.write('각성 물약 : 제작 1칸 당 ',battle_2/100,' 골드 이득')
     else:
         st.warning('각성 물약 제작 : 손해')
 
     st.subheader('아드로핀 물약')
     st.write('아드로핀 물약 : ',price('아드로핀 물약'),'골드')
-    battle_3 = (price('아드로핀 물약')-charge('아드로핀 물약'))*30 - (price('화사한 들꽃')*6 + price('수줍은 들꽃')*24 + price('단단한 철광석')*2+price('희귀한 유물')*2 + price('들꽃')*5 + 260)
+    battle_3 = (price('아드로핀 물약')-charge('아드로핀 물약'))*300 - (price('진귀한 유물')*6 + price('수줍은 들꽃')*8 + price('희귀한 유물')*17 + price('고대 유물')*75 + 2600)
     if battle_3 >= 0:
-        st.write('아드로핀 물약 : 제작 1칸 당 ',battle_3/10,' 골드 이득')
+        st.write('아드로핀 물약 : 제작 1칸 당 ',battle_3/100,' 골드 이득')
     else:
         st.warning('아드로핀 물약 제작 : 손해')    
     
     st.subheader('파괴 폭탄')
     st.write('파괴 폭탄 : ',price('파괴 폭탄'),'골드')
-    battle_4 = (price('파괴 폭탄')-charge('파괴 폭탄'))*30 - (price('화려한 버섯')*4+price('싱싱한 버섯')*12+price('묵직한 철광석')*6+price('투박한 버섯')*3.2 + 140)
+    battle_4 = (price('파괴 폭탄')-charge('파괴 폭탄'))*300 - (price('단단한 철광석')*4+price('묵직한 철광석')*15+price('철광석')*30 + 1400)
     if battle_4 >= 0:
-        st.write('파괴 폭탄 : 제작 1칸 당 ',battle_4/10,' 골드 이득')
+        st.write('파괴 폭탄 : 제작 1칸 당 ',battle_4/100,' 골드 이득')
     else:
         st.warning('파괴 폭탄 제작 : 손해')
         
 
     st.subheader('암흑 수류탄')
     st.write('암흑 수류탄 : ',price('암흑 수류탄'),'골드')
-    battle_5 = (price('암흑 수류탄')-charge('암흑 수류탄'))*30 - (price('화려한 버섯')*3+price('싱싱한 버섯')*12+price('부드러운 목재')*3+price('투박한 버섯')*2.4 + 140)
+    battle_5 = (price('암흑 수류탄')-charge('암흑 수류탄'))*300 - (price('튼튼한 목재')*4+price('부드러운 목재')*12+price('목재')*17 + 1400)
     if battle_5 >= 0:
-        st.write('암흑 수류탄 : 제작 1칸 당 ',battle_5/10,' 골드 이득')
+        st.write('암흑 수류탄 : 제작 1칸 당 ',battle_5/100,' 골드 이득')
     else:
         st.warning('암흑 수류탄 제작 : 손해')
 
     st.subheader('성스러운 부적')
     st.write('성스러운 부적 : ',price('성스러운 부적'),'골드')
-    battle_6 = (price('성스러운 부적')-charge('성스러운 부적'))*30 - (price('화려한 버섯')*3+price('싱싱한 버섯')*18+price('투박한 버섯')*3 + 140)
+    battle_6 = (price('성스러운 부적')-charge('성스러운 부적'))*300 - (price('단단한 철광석')*4+price('묵직한 철광석')*14+price('철광석')*28 + 1400)
     if battle_6 >= 0:
-        st.write('성스러운 부적 : 제작 1칸 당 ',battle_6/10,' 골드 이득')
+        st.write('성스러운 부적 : 제작 1칸 당 ',battle_6/100,' 골드 이득')
     else:
         st.warning('성스러운 부적 제작 : 손해')
 
     st.subheader('빛나는 성스러운 부적')
     st.write('빛나는 성스러운 부적 : ',price('빛나는 성스러운 부적'),'골드')
-    battle_7 = (price('빛나는 성스러운 부적')-charge('빛나는 성스러운 부적'))*20 - (price('성스러운 부적')*30 + price('화려한 버섯')*3 + 140)
+    battle_7 = (price('빛나는 성스러운 부적')-charge('빛나는 성스러운 부적'))*200 - (price('성스러운 부적')*300 + price('단단한 철광석')*4 + 1400)
     if battle_7 >= 0:
-        st.write('빛나는 성스러운 부적 : 제작 1칸 당 ',battle_7/10,' 골드 이득')
+        st.write('빛나는 성스러운 부적 : 제작 1칸 당 ',battle_7/100,' 골드 이득')
     else:
         st.warning('빛나는 성스러운 부적 제작 : 손해')
-    '''
+    
         
 with tab4:
     select_reward = st.multiselect('필요한 재료 선택',('클리어 골드','명예의 파편','찬란한 명예의 돌파석','정제된 파괴강석','정제된 수호강석','혼돈의 돌'),['클리어 골드','명예의 파편','찬란한 명예의 돌파석','정제된 파괴강석','정제된 수호강석','혼돈의 돌'])
