@@ -621,7 +621,9 @@ with tab5:
         st.write('유물 3연마 악세사리 쪽이 파편 값이 더 낮음')
         st.write('파편 1개 당 : {}골드'.format(int(shard_legacy)))
         st.write('')
-        st.write('총 필요한 골드 : {}골드'.format(int(shard_legacy)*shard_need))
+        shard_buy = shard_need//24 +1
+        st.write('구매해야 할 3연마 악세사리 : {}개'.format(shard_buy))
+        st.write('총 필요한 골드 : {}골드'.format(shard_legacy*24*shard_buy))
 
 
 
