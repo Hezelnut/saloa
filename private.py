@@ -91,7 +91,7 @@ def charge(args):
         if n+1>=database()[1][args]*0.05>n:
             return n+1
         
-tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(['최상급 오레하 제작','아비도스 제작','배틀아이템 공장','컨텐츠 손익','패키지 효율','경매 입찰가격'])
+tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(['최상급 오레하 제작','아비도스 제작','배틀아이템 공장','컨텐츠 손익','4티어 악세 파편','경매 입찰가격'])
 
 with tab1:
     st.write('최상급 오레하 융화 재료 가격 : ',price('최상급 오레하 융화 재료'),'골드')
@@ -596,45 +596,20 @@ with tab4:
     st.subheader('컨텐츠 전체 밸류 : {} 골드'.format(int(sum(df_reward))))
 
 with tab5:
-    #'PC방 패키지' = 명파(대)200개 + 찬명돌600개 + 최상레하250개, 33000원
-    #'주간 성장재료 패키지' = 명패(대)60개 + 찬명돌200개 + 최상레하500개, 22000원
-    gold_value = st.number_input('가치 비율 100골드:__원',value=70) / 100
+    # 유물 파편 : 3연마 파편24개, 20페온
+    # 고대 파편 : 3연마 파편180개, 35페온
+    crystal_value = st.number_input('크리스탈 가격 :__골드',value=2500)
+    peon = crystal_value * 850 / 9500
 
-    discount = st.checkbox('문화상품권 특가할인 적용한다면 체크')
-    if discount:
-        discount_rate = st.number_input('특가 % 수치',value=6, min_value=0, max_value=10)
+    shard_legacy = (st.number_input('유물 3연마 가격 = __골드',value=7500) + 20*peon) / 24
+    shard_ancient = (st.number_input('고대 3연마 가격 = __골드',value=135000) + 35*peon) / 180
+
+    if shard_legacy > shard_ancient:
+        st.write('고대 3연마 악세사리 쪽이 파편 값이 더 낮음')
+        st.write('파편 값 : {}골드'.format(shard_ancient))
     else:
-        discount_rate = 0
-
-    select_package = st.multiselect('필요한 재료 선택',('명예의 파편','찬란한 명예의 돌파석','최상급 오레하 융화 재료'),['명예의 파편','찬란한 명예의 돌파석','최상급 오레하 융화 재료'])
-    if '명예의 파편' in select_package:
-        package_sh = price('명예의 파편 주머니(대)')
-    else :
-        package_sh = 0
-    if '찬란한 명예의 돌파석' in select_package:
-        package_st = price('찬란한 명예의 돌파석')
-    else :
-        package_st = 0
-    if '최상급 오레하 융화 재료' in select_package:
-        package_orh = price('최상급 오레하 융화 재료')
-    else :
-        package_orh = 0
-
-    col5, col6  = st.columns(2)
-    with col5:
-        st.write('PC방 패키지, 33000원')
-        pc_package_gold = package_orh*250 + package_sh*200 + package_st*600
-        pc_package_money = 33000*(100-discount_rate)/100
-        st.write('골드 가치 : {} 골드'.format(int(pc_package_gold)))
-        st.write('골드 이득 : {} 골드'.format(int(pc_package_gold - pc_package_money/gold_value)))
-        st.write('현금 이득 : {} 원'.format(int(pc_package_gold*gold_value - pc_package_money)))
-    with col6:
-        st.write('주간 성장재료 패키지, 22000원, 실링 제외')
-        weekly_package_gold = package_orh*500 + package_sh*60 + package_st*200
-        weekly_package_money = 22000*(100-discount_rate)/100
-        st.write('골드 가치 : {} 골드'.format(int(weekly_package_gold)))
-        st.write('골드 이득 : {} 골드'.format(int(weekly_package_gold - weekly_package_money/gold_value)))
-        st.write('현금 이득 : {} 원'.format(int(weekly_package_gold*gold_value - weekly_package_money)))
+        st.write('유물 3연마 악세사리 쪽이 파편 값이 더 낮음')
+        st.write('파편 값 : {}골드'.format(shard_legacy))
 
 
 
