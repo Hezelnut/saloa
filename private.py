@@ -105,12 +105,9 @@ with tab1:
     col3, col4 = st.columns(2)
     with col3:
         st.subheader('고고학 제작')
-        slide_option_oreha_1 = (price('오레하 유물')-2,price('오레하 유물')-1,price('오레하 유물'),price('오레하 유물')+1,price('오레하 유물')+2)
-        oreha_recipe_blue_1 = st.selectbox('오레하 유물 가격',slide_option_oreha_1,index=2)
-        slide_option_oreha_2 = (price('희귀한 유물')-2,price('희귀한 유물')-1,price('희귀한 유물'),price('희귀한 유물')+1,price('희귀한 유물')+2)
-        oreha_recipe_green_1 = st.selectbox('희귀한 유물 가격',slide_option_oreha_2,index=2)
-        slide_option_oreha_3 = (price('고대 유물')-2,price('고대 유물')-1,price('고대 유물'),price('고대 유물')+1,price('고대 유물')+2)
-        oreha_recipe_white_1 = st.selectbox('고대 유물 가격',slide_option_oreha_3,index=2)
+        oreha_recipe_blue_1 = st.number_input('오레하 유물 가격',value=price('오레하 유물'))
+        oreha_recipe_green_1 = st.number_input('희귀한 유물 가격',value=price('희귀한 유물'))
+        oreha_recipe_white_1 = st.number_input('고대 유물 가격',value=price('고대 유물'))
 
         if oreha_recipe_white_1*2 >= oreha_recipe_green_1:
             if oreha_recipe_green_1*6.25 >= oreha_recipe_blue_1:
@@ -142,12 +139,9 @@ with tab1:
     
     with col4:
         st.subheader('낚시 제작')
-        slide_option_fish_1 = (price('오레하 태양 잉어')-2,price('오레하 태양 잉어')-1,price('오레하 태양 잉어'),price('오레하 태양 잉어')+1,price('오레하 태양 잉어')+2)
-        oreha_recipe_blue_2 = st.selectbox('오레하 태양 잉어 가격',slide_option_fish_1,index=2)
-        slide_option_fish_2 = (price('붉은 살 생선')-2,price('붉은 살 생선')-1,price('붉은 살 생선'),price('붉은 살 생선')+1,price('붉은 살 생선')+2)
-        oreha_recipe_green_2 = st.selectbox('붉은 살 생선 가격',slide_option_fish_2,index=2)
-        slide_option_fish_3 = (price('생선')-2,price('생선')-1,price('생선'),price('생선')+1,price('생선')+2)
-        oreha_recipe_white_2 = st.selectbox('생선 가격',slide_option_fish_3,index=2)
+        oreha_recipe_blue_2 = st.number_input('오레하 태양 잉어 가격',value=price('오레하 태양 잉어'))
+        oreha_recipe_green_2 = st.number_input('붉은 살 생선 가격',value=price('붉은 살 생선'))
+        oreha_recipe_white_2 = st.number_input('생선 가격',value=price('생선 가격'))
 
         fishing_1 = ('오레하 태양 잉어 : {}골드, 붉은 살 생선 : {}골드, 생선 : {}골드'.format(oreha_recipe_blue_2,oreha_recipe_green_2,oreha_recipe_white_2))
         
@@ -173,8 +167,7 @@ with tab2:
     
     st.write('아비도스 재료 가격 : ',price('아비도스 융화 재료'),'골드')
     st.write('제작 수수료 기준 : ',int(368),'골드')
-    avidos_option_1 = (price('아비도스 융화 재료')-2,price('아비도스 융화 재료')-1,price('아비도스 융화 재료'),price('아비도스 융화 재료')+1,price('아비도스 융화 재료')+2)
-    avidos_value_1 = st.selectbox('아비도스 융화 재료 판매 가격',avidos_option_1,index=2)
+    avidos_value_1 = st.nuber_input('아비도스 융화 재료 판매 가격',value=price('아비도스 융화 재료'))
     for n in range(0,avidos_value_1):
         if n+1>=avidos_value_1*0.05>n:
             avidos_charge_1 = n+1
