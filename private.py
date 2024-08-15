@@ -167,7 +167,7 @@ with tab2:
     
     st.write('아비도스 재료 가격 : ',price('아비도스 융화 재료'),'골드')
     st.write('제작 수수료 기준 : ',int(368),'골드')
-    avidos_value_1 = st.nuber_input('아비도스 융화 재료 판매 가격',value=price('아비도스 융화 재료'))
+    avidos_value_1 = st.number_input('아비도스 융화 재료 판매 가격',value=price('아비도스 융화 재료'))
     for n in range(0,avidos_value_1):
         if n+1>=avidos_value_1*0.05>n:
             avidos_charge_1 = n+1
