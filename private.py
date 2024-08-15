@@ -141,7 +141,7 @@ with tab1:
         st.subheader('낚시 제작')
         oreha_recipe_blue_2 = st.number_input('오레하 태양 잉어 가격',value=price('오레하 태양 잉어'))
         oreha_recipe_green_2 = st.number_input('붉은 살 생선 가격',value=price('붉은 살 생선'))
-        oreha_recipe_white_2 = st.number_input('생선 가격',value=price('생선 가격'))
+        oreha_recipe_white_2 = st.number_input('생선 가격',value=price('생선'))
 
         fishing_1 = ('오레하 태양 잉어 : {}골드, 붉은 살 생선 : {}골드, 생선 : {}골드'.format(oreha_recipe_blue_2,oreha_recipe_green_2,oreha_recipe_white_2))
         
