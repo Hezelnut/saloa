@@ -599,23 +599,30 @@ with tab5:
     st.write('')
     st.write('')
 
-    shard_legacy = (st.number_input('유물 3연마 가격 = __골드',value=7500) + 20*peon) / 24
-    shard_ancient = (st.number_input('고대 3연마 가격 = __골드',value=135000) + 35*peon) / 180
+    shard_legacy = (st.number_input('유물 3연마 가격 = __골드',value=2000) + 20*peon) / 24
+    shard_ancient = (st.number_input('고대 3연마 가격 = __골드',value=40000) + 35*peon) / 180
 
     st.write('')
     st.write('')
 
     if shard_legacy > shard_ancient:
         st.write('고대 3연마 악세사리 쪽이 파편 값이 더 낮음')
-        st.write('파편 1개 당 : {}골드'.format(int(shard_ancient)))
+        st.write('고대악세 구매 시 파편 1개 당 : {}골드'.format(int(shard_ancient)))
         st.write('')
+        st.write('유물악세 구매 시 파편 1개 당 : {}골드'.format(int(shard_legacy)))
+        st.write('')
+        shard_buy = shard_need//180
+        st.write('구매해야 할 고대3연마 악세사리 : {}개'.format(shard_buy))
         st.write('총 필요한 골드 : {}골드'.format(int(shard_ancient)*shard_need))
+        st.write('나머지 파편 : ()개'.format(int(shard_need-180*shard_buy)))
     else:
         st.write('유물 3연마 악세사리 쪽이 파편 값이 더 낮음')
-        st.write('파편 1개 당 : {}골드'.format(int(shard_legacy)))
+        st.write('유물악세 구매 시 파편 1개 당 : {}골드'.format(int(shard_legacy)))
+        st.write('')
+        st.write('고대악세 구매 시 파편 1개 당 : {}골드'.format(int(shard_ancient)))
         st.write('')
         shard_buy = shard_need//24 +1
-        st.write('구매해야 할 3연마 악세사리 : {}개'.format(shard_buy))
+        st.write('구매해야 할 유물3연마 악세사리 : {}개'.format(shard_buy))
         st.write('총 필요한 골드 : {}골드'.format(shard_legacy*24*shard_buy))
 
 
