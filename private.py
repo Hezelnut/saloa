@@ -91,307 +91,325 @@ def charge(args):
         if n+1>=database()[1][args]*0.05>n:
             return n+1
         
-tab0, tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(['재료','오레하 융화 재료','아비도스 융화 재료','배틀아이템 제작','컨텐츠 손익','4티어 악세 파편','경매 입찰가격'])
+tab0, tab1, tab3, tab4, tab5, tab6 = st.tabs(['재료','융화 재료 제작','배틀아이템 제작','컨텐츠 손익','4티어 악세 파편','경매 입찰가격'])
 
 with tab0 :
+    if 'modify' not in st.session_state:
+        st.session_state['modify'] = True
+    modify_recipe = st.checkbox('재료 가격 수정하기')
+    if modify_recipe:
+        st.session_state['modify'] = False
+    else:
+        st.session_state['modify'] = True
+
     col_recipe_1, col_recipe_2, col_recipe_3 = st.columns(3)
     with col_recipe_1:
         st.subheader('고고학')
-        legacy_recipe_blue_avidos = st.number_input('아비도스 유물 가격',value=price('아비도스 유물'))
-        legacy_recipe_blue_oreha = st.number_input('오레하 유물 가격',value=price('오레하 유물'))
-        legacy_recipe_green = st.number_input('희귀한 유물 가격',value=price('희귀한 유물'))
-        legacy_recipe_white = st.number_input('고대 유물 가격',value=price('고대 유물'))
+        legacy_recipe_blue_avidos = st.number_input('아비도스 유물 가격',value=price('아비도스 유물'),disabled=st.session_state['modify'])
+        legacy_recipe_blue_oreha = st.number_input('오레하 유물 가격',value=price('오레하 유물'),disabled=st.session_state['modify'])
+        legacy_recipe_green = st.number_input('희귀한 유물 가격',value=price('희귀한 유물'),disabled=st.session_state['modify'])
+        legacy_recipe_white = st.number_input('고대 유물 가격',value=price('고대 유물'),disabled=st.session_state['modify'])
     with col_recipe_2 :
         st.subheader('낚시')
-        fishing_recipe_blue_avidos = st.number_input('아비도스 태양 잉어 가격',value=price('아비도스 태양 잉어'))
-        fishing_recipe_blue_oreha = st.number_input('오레하 태양 잉어 가격',value=price('오레하 태양 잉어'))
-        fishing_recipe_green = st.number_input('붉은 살 생선 가격',value=price('붉은 살 생선'))
-        fishing_recipe_white = st.number_input('생선 가격',value=price('생선'))
+        fishing_recipe_blue_avidos = st.number_input('아비도스 태양 잉어 가격',value=price('아비도스 태양 잉어'),disabled=st.session_state['modify'])
+        fishing_recipe_blue_oreha = st.number_input('오레하 태양 잉어 가격',value=price('오레하 태양 잉어'),disabled=st.session_state['modify'])
+        fishing_recipe_green = st.number_input('붉은 살 생선 가격',value=price('붉은 살 생선'),disabled=st.session_state['modify'])
+        fishing_recipe_white = st.number_input('생선 가격',value=price('생선'),disabled=st.session_state['modify'])
     with col_recipe_3:
         st.subheader('벌목')
-        tree_recipe_blue_avidos = st.number_input('아비도스 목재 가격',value=price('아비도스 목재'))
-        tree_recipe_blue_oreha = st.number_input('튼튼한 목재 가격',value=price('튼튼한 목재'))
-        tree_recipe_green = st.number_input('부드러운 목재 가격',value=price('부드러운 목재'))
-        tree_recipe_white = st.number_input('목재 가격',value=price('목재'))
+        tree_recipe_blue_avidos = st.number_input('아비도스 목재 가격',value=price('아비도스 목재'),disabled=st.session_state['modify'])
+        tree_recipe_blue_oreha = st.number_input('튼튼한 목재 가격',value=price('튼튼한 목재'),disabled=st.session_state['modify'])
+        tree_recipe_green = st.number_input('부드러운 목재 가격',value=price('부드러운 목재'),disabled=st.session_state['modify'])
+        tree_recipe_white = st.number_input('목재 가격',value=price('목재'),disabled=st.session_state['modify'])
     st.write('')
     
     col_recipe_4,col_recipe_5, col_recipe_6 = st.columns(3)
 
     with col_recipe_4 :
         st.subheader('채광')
-        mining_recipe_blue_avidos = st.number_input('아비도스 철광석 가격',value=price('아비도스 철광석'))
-        mining_recipe_blue_oreha = st.number_input('단단한 철광석 가격',value=price('단단한 철광석'))
-        mining_recipe_green = st.number_input('묵직한 철광석 가격',value=price('묵직한 철광석'))
-        mining_recipe_white = st.number_input('철광석 가격',value=price('철광석'))
+        mining_recipe_blue_avidos = st.number_input('아비도스 철광석 가격',value=price('아비도스 철광석'),disabled=st.session_state['modify'])
+        mining_recipe_blue_oreha = st.number_input('단단한 철광석 가격',value=price('단단한 철광석'),disabled=st.session_state['modify'])
+        mining_recipe_green = st.number_input('묵직한 철광석 가격',value=price('묵직한 철광석'),disabled=st.session_state['modify'])
+        mining_recipe_white = st.number_input('철광석 가격',value=price('철광석'),disabled=st.session_state['modify'])
     with col_recipe_5:
         st.subheader('채집')
-        flower_recipe_blue_avidos = st.number_input('아비도스 들꽃 가격',value=price('아비도스 들꽃'))
-        flower_recipe_blue_oreha = st.number_input('화사한 들꽃 가격',value=price('화사한 들꽃'))
-        flower_recipe_green = st.number_input('수줍은 들꽃 가격',value=price('수줍은 들꽃'))
-        flower_recipe_white = st.number_input('들꽃 가격',value=price('들꽃'))
+        flower_recipe_blue_avidos = st.number_input('아비도스 들꽃 가격',value=price('아비도스 들꽃'),disabled=st.session_state['modify'])
+        flower_recipe_blue_oreha = st.number_input('화사한 들꽃 가격',value=price('화사한 들꽃'),disabled=st.session_state['modify'])
+        flower_recipe_green = st.number_input('수줍은 들꽃 가격',value=price('수줍은 들꽃'),disabled=st.session_state['modify'])
+        flower_recipe_white = st.number_input('들꽃 가격',value=price('들꽃'),disabled=st.session_state['modify'])
     with col_recipe_6 :
         st.subheader('수렵')
-        hunting_recipe_blue_avidos = st.number_input('아비도스 두툼한 생고기 가격',value=price('아비도스 두툼한 생고기'))
-        hunting_recipe_blue_oreha = st.number_input('오레하 두툼한 생고기',value=price('오레하 두툼한 생고기'))
-        hunting_recipe_green = st.number_input('다듬은 생고기 가격',value=price('다듬은 생고기'))
-        hunting_recipe_white = st.number_input('두툼한 생고기 가격',value=price('두툼한 생고기'))
+        hunting_recipe_blue_avidos = st.number_input('아비도스 두툼한 생고기 가격',value=price('아비도스 두툼한 생고기'),disabled=st.session_state['modify'])
+        hunting_recipe_blue_oreha = st.number_input('오레하 두툼한 생고기',value=price('오레하 두툼한 생고기'),disabled=st.session_state['modify'])
+        hunting_recipe_green = st.number_input('다듬은 생고기 가격',value=price('다듬은 생고기'),disabled=st.session_state['modify'])
+        hunting_recipe_white = st.number_input('두툼한 생고기 가격',value=price('두툼한 생고기'),disabled=st.session_state['modify'])
 
 with tab1:
-    st.write('최상급 오레하 융화 재료 가격 : ',price('최상급 오레하 융화 재료'),'골드')
-    st.write('제작 수수료 기준 : ',int(276),'골드')
-    oreha_value_1 = st.number_input('최상급 오레하 판매 가격',value=price('최상급 오레하 융화 재료'))
-    for n in range(0,oreha_value_1):
-        if n+1>=oreha_value_1*0.05>n:
-            oreha_charge = n+1
+    #harmonize = 융화재
+    harmonize = ['아비도스 융화 재료','최상급 오레하 융화 재료']
+    choice = st.radio('제작할 융화 재료 선택',harmonize)
+    if choice == '최상급 오레하 융화 재료':
+        st.write('')
+        st.write('')
+        st.write('최상급 오레하 융화 재료 가격 : ',price('최상급 오레하 융화 재료'),'골드')
+        st.write('제작 수수료 기준 : ',int(276),'골드')
 
-    col3, col4 = st.columns(2)
-    with col3:
-        st.subheader('고고학 제작')        
+        oreha_value_1 = st.number_input('최상급 오레하 판매 가격',value=price('최상급 오레하 융화 재료'))
+        for n in range(0,oreha_value_1):
+            if n+1>=oreha_value_1*0.05>n:
+                oreha_charge = n+1
+        st.write('')
+        st.write('')
 
-        if legacy_recipe_white*2 >= legacy_recipe_green:
-            if legacy_recipe_green*6.25 >= legacy_recipe_blue_oreha:
-                oreha_legacy = legacy_recipe_blue_oreha
-                oreha_change_tf = '가루 교환 쓰지않음'
+        col3, col4 = st.columns(2)
+        with col3:
+            st.subheader('고고학 제작')        
+
+            if legacy_recipe_white*2 >= legacy_recipe_green:
+                if legacy_recipe_green*6.25 >= legacy_recipe_blue_oreha:
+                    oreha_legacy = legacy_recipe_blue_oreha
+                    oreha_change_tf = '가루 교환 쓰지않음'
+                else:
+                    oreha_legacy = legacy_recipe_green*6.25
+                    oreha_change_tf = '가루 교환 사용 (희귀한유물)'
             else:
-                oreha_legacy = legacy_recipe_green*6.25
-                oreha_change_tf = '가루 교환 사용 (희귀한유물)'
-        else:
-            if legacy_recipe_white*5/4 >= legacy_recipe_blue_oreha/10:
-                oreha_legacy = legacy_recipe_blue_oreha
-                oreha_change_tf = '가루 교환 쓰지않음'
+                if legacy_recipe_white*5/4 >= legacy_recipe_blue_oreha/10:
+                    oreha_legacy = legacy_recipe_blue_oreha
+                    oreha_change_tf = '가루 교환 쓰지않음'
+                else:
+                    oreha_legacy = legacy_recipe_white*50/4
+                    oreha_change_tf = '가루 교환 사용 (고대 유물)'
+
+            recipe_legacy = oreha_legacy*52 + legacy_recipe_green*51 + legacy_recipe_white*107
+            profit_legacy = (oreha_value_1-oreha_charge)*1500-recipe_legacy-27600
+
+            if profit_legacy>=0:
+                legacy_result = '1칸 당 '+str(int(profit_legacy/100))+'골드 이득'
             else:
-                oreha_legacy = legacy_recipe_white*50/4
-                oreha_change_tf = '가루 교환 사용 (고대 유물)'
-
-        recipe_legacy = oreha_legacy*52 + legacy_recipe_green*51 + legacy_recipe_white*107
-        profit_legacy = (oreha_value_1-oreha_charge)*1500-recipe_legacy-27600
-
-        if profit_legacy>=0:
-            legacy_result = '1칸 당 '+str(int(profit_legacy/100))+'골드 이득'
-        else:
-            legacy_result = '만들어 팔면 손해'
+                legacy_result = '만들어 팔면 손해'
+            
+            legacy_1 = ('오레하 유물 : {}골드, 희귀한 유물 : {}골드, 고대 유물 : {}골드'.format(legacy_recipe_blue_oreha,legacy_recipe_green,legacy_recipe_white))
+            
+            col3.metric(label=legacy_1,value=legacy_result,delta=oreha_change_tf,delta_color='off')
         
-        legacy_1 = ('오레하 유물 : {}골드, 희귀한 유물 : {}골드, 고대 유물 : {}골드'.format(legacy_recipe_blue_oreha,legacy_recipe_green,legacy_recipe_white))
         
-        col3.metric(label=legacy_1,value=legacy_result,delta=oreha_change_tf,delta_color='off')
-    
-    
-    with col4:
-        st.subheader('낚시 제작')
+        with col4:
+            st.subheader('낚시 제작')
 
-        fishing_1 = ('오레하 태양 잉어 : {}골드, 붉은 살 생선 : {}골드, 생선 : {}골드'.format(fishing_recipe_blue_oreha,fishing_recipe_green,fishing_recipe_white))
+            fishing_1 = ('오레하 태양 잉어 : {}골드, 붉은 살 생선 : {}골드, 생선 : {}골드'.format(fishing_recipe_blue_oreha,fishing_recipe_green,fishing_recipe_white))
+            
+            if fishing_recipe_green*6.25 >= fishing_recipe_blue_oreha:
+                oreha_fishing = fishing_recipe_blue_oreha
+                fishing_2 = '가루 교환 쓰지않음'
+            else:
+                if fishing_recipe_green >= fishing_recipe_white*2:
+                    oreha_fishing = fishing_recipe_white*12.5
+                    fishing_2 = '가루 교환 사용 (생선)'
+                else:
+                    oreha_fishing = fishing_recipe_green*6.25
+                    fishing_2 = '가루 교환 사용 (붉은 살 생선)'
+            recipe_fishing = oreha_fishing*52 + fishing_recipe_green*64 + fishing_recipe_white*142
+            profit_fishing = (oreha_value_1-oreha_charge)*1500 - recipe_fishing -27600
+            if profit_fishing >= 0:
+                fishing_result = '1칸 당 '+str(int(profit_fishing/100))+' 골드 이득'
+            else:
+                fishing_result = '만들어 팔면 손해'
+            col4.metric(label=fishing_1,value=fishing_result,delta=fishing_2,delta_color='off')
+    elif choice == '아비도스 융화 재료':
+        st.write('')
+        st.write('')
+        st.write('아비도스 재료 가격 : ',price('아비도스 융화 재료'),'골드')
+        st.write('제작 수수료 기준 : ',int(368),'골드')
+        avidos_value_1 = st.number_input('아비도스 융화 재료 판매 가격',value=price('아비도스 융화 재료'))
+        for n in range(0,avidos_value_1):
+            if n+1>=avidos_value_1*0.05>n:
+                avidos_charge_1 = n+1
         
-        if fishing_recipe_green*6.25 >= fishing_recipe_blue_oreha:
-            oreha_fishing = fishing_recipe_blue_oreha
-            fishing_2 = '가루 교환 쓰지않음'
-        else:
+        st.write('')
+        st.write('')
+
+        col_avidos_1,col_avidos_2 = st.columns(2)
+        with col_avidos_1:
+
+            st.subheader('고고학 제작')
+            avidos_list_legacy = ('아비도스 유물 : {}골드, 희귀한 유물 : {}골드, 고대 유물 : {}골드'.format(legacy_recipe_blue_avidos,legacy_recipe_green,legacy_recipe_white))
+            
+            if legacy_recipe_green >= legacy_recipe_white*2:
+                if legacy_recipe_blue_avidos >= legacy_recipe_white*12.5:
+                    avidos_legacy = legacy_recipe_white*12.5
+                    avidos_legacy_change = '가루 교환 사용 (고대 유물)'
+                else:    
+                    avidos_legacy = legacy_recipe_blue_avidos
+                    avidos_legacy_change = '가루 교환 사용하지 않음'
+            else:
+                if legacy_recipe_blue_avidos >= legacy_recipe_green*6.25:
+                    avidos_legacy = legacy_recipe_green*6.25
+                    avidos_legacy_change = '가루 교환 사용 (희귀한 유물)'
+                else:    
+                    avidos_legacy = legacy_recipe_blue_avidos
+                    avidos_legacy_change = '가루 교환 사용하지 않음'
+
+            avidos_recipe_legacy = avidos_legacy*33 + legacy_recipe_green*45 + legacy_recipe_white*86
+            avidos_legacy_profit = (avidos_value_1-avidos_charge_1)*1000-avidos_recipe_legacy-36800
+
+            if avidos_legacy_profit>=0:
+                avidos_legacy_result = '1칸 당 '+str(int(avidos_legacy_profit/100))+'골드 이득'
+            else:
+                avidos_legacy_result = '만들어 팔면 손해'
+            
+            st.metric(label=avidos_list_legacy,value=avidos_legacy_result,delta=avidos_legacy_change,delta_color='off')
+
+            st.write('')
+
+            st.subheader('낚시 제작')
+            avidos_list_fishing = ('아비도스 태양 잉어 : {}골드, 붉은 살 생선 : {}골드, 생선 : {}골드'.format(fishing_recipe_blue_avidos,fishing_recipe_green,fishing_recipe_white))
+            
             if fishing_recipe_green >= fishing_recipe_white*2:
-                oreha_fishing = fishing_recipe_white*12.5
-                fishing_2 = '가루 교환 사용 (생선)'
+                if fishing_recipe_blue_avidos >= fishing_recipe_white*12.5:
+                    avidos_fishing = fishing_recipe_white*12.5
+                    avidos_fishing_change = '가루 교환 사용 (생선)'
+                else:    
+                    avidos_fishing = fishing_recipe_blue_avidos
+                    avidos_fishing_change = '가루 교환 사용하지 않음'
             else:
-                oreha_fishing = fishing_recipe_green*6.25
-                fishing_2 = '가루 교환 사용 (붉은 살 생선)'
-        recipe_fishing = oreha_fishing*52 + fishing_recipe_green*64 + fishing_recipe_white*142
-        profit_fishing = (oreha_value_1-oreha_charge)*1500 - recipe_fishing -27600
-        if profit_fishing >= 0:
-            fishing_result = '1칸 당 '+str(int(profit_fishing/100))+' 골드 이득'
-        else:
-            fishing_result = '만들어 팔면 손해'
-        col4.metric(label=fishing_1,value=fishing_result,delta=fishing_2,delta_color='off')
+                if fishing_recipe_blue_avidos >= fishing_recipe_green*6.25:
+                    avidos_fishing = fishing_recipe_green*6.25
+                    avidos_fishing_change = '가루 교환 사용 (붉은 살 생선)'
+                else:    
+                    avidos_fishing = fishing_recipe_blue_avidos
+                    avidos_fishing_change = '가루 교환 사용하지 않음'
+                    
+            avidos_recipe_fishing = avidos_fishing*33 + fishing_recipe_green*45 + fishing_recipe_white*86
+            avidos_fishing_profit = (avidos_value_1-avidos_charge_1)*1000-avidos_recipe_fishing-36800
 
-with tab2:
-    
-    st.write('아비도스 재료 가격 : ',price('아비도스 융화 재료'),'골드')
-    st.write('제작 수수료 기준 : ',int(368),'골드')
-    avidos_value_1 = st.number_input('아비도스 융화 재료 판매 가격',value=price('아비도스 융화 재료'))
-    for n in range(0,avidos_value_1):
-        if n+1>=avidos_value_1*0.05>n:
-            avidos_charge_1 = n+1
-    
-    st.write('')
-    st.write('')
+            if avidos_fishing_profit>=0:
+                avidos_fishing_result = '1칸 당 '+str(int(avidos_fishing_profit/100))+'골드 이득'
+            else:
+                avidos_fishing_result = '만들어 팔면 손해'
+            
+            st.metric(label=avidos_list_fishing,value=avidos_fishing_result,delta=avidos_fishing_change,delta_color='off')
 
-    col_avidos_1,col_avidos_2 = st.columns(2)
-    with col_avidos_1:
+            st.write('')
 
-        st.subheader('고고학 제작')
-        avidos_list_legacy = ('아비도스 유물 : {}골드, 희귀한 유물 : {}골드, 고대 유물 : {}골드'.format(legacy_recipe_blue_avidos,legacy_recipe_green,legacy_recipe_white))
+            st.subheader('벌목 제작')
+            avidos_list_tree = ('아비도스 목재 : {}골드, 부드러운 목재 : {}골드, 목재 : {}골드'.format(tree_recipe_blue_avidos,tree_recipe_green,tree_recipe_white))
+            
+            if tree_recipe_green >= tree_recipe_white*2:
+                if tree_recipe_blue_avidos >= tree_recipe_white*12.5:
+                    avidos_tree = tree_recipe_white*12.5
+                    avidos_tree_change = '가루 교환 사용 (목재)'
+                else:    
+                    avidos_tree = tree_recipe_blue_avidos
+                    avidos_tree_change = '가루 교환 사용하지 않음'
+            else:
+                if tree_recipe_blue_avidos >= tree_recipe_green*6.25:
+                    avidos_tree = tree_recipe_green*6.25
+                    avidos_tree_change = '가루 교환 사용 (부드러운 목재)'
+                else:    
+                    avidos_tree = tree_recipe_blue_avidos
+                    avidos_tree_change = '가루 교환 사용하지 않음'
+                    
+            avidos_recipe_tree = avidos_tree*33 + tree_recipe_green*45 + tree_recipe_white*86
+            avidos_tree_profit = (avidos_value_1-avidos_charge_1)*1000-avidos_recipe_tree-36800
+
+            if avidos_tree_profit>=0:
+                avidos_tree_result = '1칸 당 '+str(int(avidos_tree_profit/100))+'골드 이득'
+            else:
+                avidos_tree_result = '만들어 팔면 손해'
+            
+            st.metric(label=avidos_list_tree,value=avidos_tree_result,delta=avidos_tree_change,delta_color='off')
         
-        if legacy_recipe_green >= legacy_recipe_white*2:
-            if legacy_recipe_blue_avidos >= legacy_recipe_white*12.5:
-                avidos_legacy = legacy_recipe_white*12.5
-                avidos_legacy_change = '가루 교환 사용 (고대 유물)'
-            else:    
-                avidos_legacy = legacy_recipe_blue_avidos
-                avidos_legacy_change = '가루 교환 사용하지 않음'
-        else:
-            if legacy_recipe_blue_avidos >= legacy_recipe_green*6.25:
-                avidos_legacy = legacy_recipe_green*6.25
-                avidos_legacy_change = '가루 교환 사용 (희귀한 유물)'
-            else:    
-                avidos_legacy = legacy_recipe_blue_avidos
-                avidos_legacy_change = '가루 교환 사용하지 않음'
+        with col_avidos_2:
 
-        avidos_recipe_legacy = avidos_legacy*33 + legacy_recipe_green*45 + legacy_recipe_white*86
-        avidos_legacy_profit = (avidos_value_1-avidos_charge_1)*1000-avidos_recipe_legacy-36800
+            st.subheader('채광 제작')
+            avidos_list_mining = ('아비도스 철광석 : {}골드, 묵직한 철광석 : {}골드, 철광석 : {}골드'.format(mining_recipe_blue_avidos,mining_recipe_green,mining_recipe_white))
+            
+            if mining_recipe_green >= mining_recipe_white*2:
+                if mining_recipe_blue_avidos >= mining_recipe_white*12.5:
+                    avidos_mining = mining_recipe_white*12.5
+                    avidos_mining_change = '가루 교환 사용 (철광석)'
+                else:    
+                    avidos_mining = mining_recipe_blue_avidos
+                    avidos_mining_change = '가루 교환 사용하지 않음'
+            else:
+                if mining_recipe_blue_avidos >= mining_recipe_green*6.25:
+                    avidos_mining = mining_recipe_green*6.25
+                    avidos_mining_change = '가루 교환 사용 (묵직한 철광석)'
+                else:    
+                    avidos_mining = mining_recipe_blue_avidos
+                    avidos_mining_change = '가루 교환 사용하지 않음'
+                    
+            avidos_recipe_mining = avidos_mining*33 + mining_recipe_green*45 + mining_recipe_white*86
+            avidos_mining_profit = (avidos_value_1-avidos_charge_1)*1000-avidos_recipe_mining-36800
 
-        if avidos_legacy_profit>=0:
-            avidos_legacy_result = '1칸 당 '+str(int(avidos_legacy_profit/100))+'골드 이득'
-        else:
-            avidos_legacy_result = '만들어 팔면 손해'
-        
-        st.metric(label=avidos_list_legacy,value=avidos_legacy_result,delta=avidos_legacy_change,delta_color='off')
+            if avidos_mining_profit>=0:
+                avidos_mining_result = '1칸 당 '+str(int(avidos_mining_profit/100))+'골드 이득'
+            else:
+                avidos_mining_result = '만들어 팔면 손해'
+            
+            st.metric(label=avidos_list_mining,value=avidos_mining_result,delta=avidos_mining_change,delta_color='off')
 
-        st.write('')
+            st.write('')
 
-        st.subheader('낚시 제작')
-        avidos_list_fishing = ('아비도스 태양 잉어 : {}골드, 붉은 살 생선 : {}골드, 생선 : {}골드'.format(fishing_recipe_blue_avidos,fishing_recipe_green,fishing_recipe_white))
-        
-        if fishing_recipe_green >= fishing_recipe_white*2:
-            if fishing_recipe_blue_avidos >= fishing_recipe_white*12.5:
-                avidos_fishing = fishing_recipe_white*12.5
-                avidos_fishing_change = '가루 교환 사용 (생선)'
-            else:    
-                avidos_fishing = fishing_recipe_blue_avidos
-                avidos_fishing_change = '가루 교환 사용하지 않음'
-        else:
-            if fishing_recipe_blue_avidos >= fishing_recipe_green*6.25:
-                avidos_fishing = fishing_recipe_green*6.25
-                avidos_fishing_change = '가루 교환 사용 (붉은 살 생선)'
-            else:    
-                avidos_fishing = fishing_recipe_blue_avidos
-                avidos_fishing_change = '가루 교환 사용하지 않음'
-                
-        avidos_recipe_fishing = avidos_fishing*33 + fishing_recipe_green*45 + fishing_recipe_white*86
-        avidos_fishing_profit = (avidos_value_1-avidos_charge_1)*1000-avidos_recipe_fishing-36800
+            st.subheader('채집 제작')
+            avidos_list_flower = ('아비도스 들꽃 : {}골드, 수줍은 들꽃 : {}골드, 들꽃 : {}골드'.format(flower_recipe_blue_avidos,flower_recipe_green,flower_recipe_white))
+            
+            if flower_recipe_green >= flower_recipe_white*2:
+                if flower_recipe_blue_avidos >= flower_recipe_white*12.5:
+                    avidos_flower = flower_recipe_white*12.5
+                    avidos_flower_change = '가루 교환 사용 (들꽃)'
+                else:    
+                    avidos_flower = flower_recipe_blue_avidos
+                    avidos_flower_change = '가루 교환 사용하지 않음'
+            else:
+                if flower_recipe_blue_avidos >= flower_recipe_green*6.25:
+                    avidos_flower = flower_recipe_green*6.25
+                    avidos_flower_change = '가루 교환 사용 (수줍은 들꽃)'
+                else:    
+                    avidos_flower = flower_recipe_blue_avidos
+                    avidos_flower_change = '가루 교환 사용하지 않음'
+                    
+            avidos_recipe_flower = avidos_flower*33 + flower_recipe_green*45 + flower_recipe_white*86
+            avidos_flower_profit = (avidos_value_1-avidos_charge_1)*1000-avidos_recipe_flower-36800
 
-        if avidos_fishing_profit>=0:
-            avidos_fishing_result = '1칸 당 '+str(int(avidos_fishing_profit/100))+'골드 이득'
-        else:
-            avidos_fishing_result = '만들어 팔면 손해'
-        
-        st.metric(label=avidos_list_fishing,value=avidos_fishing_result,delta=avidos_fishing_change,delta_color='off')
+            if avidos_flower_profit>=0:
+                avidos_flower_result = '1칸 당 '+str(int(avidos_flower_profit/100))+'골드 이득'
+            else:
+                avidos_flower_result = '만들어 팔면 손해'
+            
+            st.metric(label=avidos_list_flower,value=avidos_flower_result,delta=avidos_flower_change,delta_color='off')
 
-        st.write('')
+            st.write('')
 
-        st.subheader('벌목 제작')
-        avidos_list_tree = ('아비도스 목재 : {}골드, 부드러운 목재 : {}골드, 목재 : {}골드'.format(tree_recipe_blue_avidos,tree_recipe_green,tree_recipe_white))
-        
-        if tree_recipe_green >= tree_recipe_white*2:
-            if tree_recipe_blue_avidos >= tree_recipe_white*12.5:
-                avidos_tree = tree_recipe_white*12.5
-                avidos_tree_change = '가루 교환 사용 (목재)'
-            else:    
-                avidos_tree = tree_recipe_blue_avidos
-                avidos_tree_change = '가루 교환 사용하지 않음'
-        else:
-            if tree_recipe_blue_avidos >= tree_recipe_green*6.25:
-                avidos_tree = tree_recipe_green*6.25
-                avidos_tree_change = '가루 교환 사용 (부드러운 목재)'
-            else:    
-                avidos_tree = tree_recipe_blue_avidos
-                avidos_tree_change = '가루 교환 사용하지 않음'
-                
-        avidos_recipe_tree = avidos_tree*33 + tree_recipe_green*45 + tree_recipe_white*86
-        avidos_tree_profit = (avidos_value_1-avidos_charge_1)*1000-avidos_recipe_tree-36800
+            st.subheader('수렵 제작')
+            avidos_list_hunting = ('아비도스 두툼한 생고기 : {}골드, 다듬은 생고기 : {}골드, 두툼한 생고기 : {}골드'.format(hunting_recipe_blue_avidos,hunting_recipe_green,hunting_recipe_white))
+            
+            if hunting_recipe_green >= hunting_recipe_white*2:
+                if hunting_recipe_blue_avidos >= hunting_recipe_white*12.5:
+                    avidos_hunting = hunting_recipe_white*12.5
+                    avidos_hunting_change = '가루 교환 사용 (두툼한 생고기)'
+                else:    
+                    avidos_hunting = hunting_recipe_blue_avidos
+                    avidos_hunting_change = '가루 교환 사용하지 않음'
+            else:
+                if hunting_recipe_blue_avidos >= hunting_recipe_green*6.25:
+                    avidos_hunting = hunting_recipe_green*6.25
+                    avidos_hunting_change = '가루 교환 사용 (다듬은 생고기)'
+                else:    
+                    avidos_hunting = hunting_recipe_blue_avidos
+                    avidos_hunting_change = '가루 교환 사용하지 않음'
+                    
+            avidos_recipe_hunting = avidos_hunting*33 + hunting_recipe_green*45 + hunting_recipe_white*86
+            avidos_hunting_profit = (avidos_value_1-avidos_charge_1)*1000-avidos_recipe_hunting-36800
 
-        if avidos_tree_profit>=0:
-            avidos_tree_result = '1칸 당 '+str(int(avidos_tree_profit/100))+'골드 이득'
-        else:
-            avidos_tree_result = '만들어 팔면 손해'
-        
-        st.metric(label=avidos_list_tree,value=avidos_tree_result,delta=avidos_tree_change,delta_color='off')
-    
-    with col_avidos_2:
-
-        st.subheader('채광 제작')
-        avidos_list_mining = ('아비도스 철광석 : {}골드, 묵직한 철광석 : {}골드, 철광석 : {}골드'.format(mining_recipe_blue_avidos,mining_recipe_green,mining_recipe_white))
-        
-        if mining_recipe_green >= mining_recipe_white*2:
-            if mining_recipe_blue_avidos >= mining_recipe_white*12.5:
-                avidos_mining = mining_recipe_white*12.5
-                avidos_mining_change = '가루 교환 사용 (철광석)'
-            else:    
-                avidos_mining = mining_recipe_blue_avidos
-                avidos_mining_change = '가루 교환 사용하지 않음'
-        else:
-            if mining_recipe_blue_avidos >= mining_recipe_green*6.25:
-                avidos_mining = mining_recipe_green*6.25
-                avidos_mining_change = '가루 교환 사용 (묵직한 철광석)'
-            else:    
-                avidos_mining = mining_recipe_blue_avidos
-                avidos_mining_change = '가루 교환 사용하지 않음'
-                
-        avidos_recipe_mining = avidos_mining*33 + mining_recipe_green*45 + mining_recipe_white*86
-        avidos_mining_profit = (avidos_value_1-avidos_charge_1)*1000-avidos_recipe_mining-36800
-
-        if avidos_mining_profit>=0:
-            avidos_mining_result = '1칸 당 '+str(int(avidos_mining_profit/100))+'골드 이득'
-        else:
-            avidos_mining_result = '만들어 팔면 손해'
-        
-        st.metric(label=avidos_list_mining,value=avidos_mining_result,delta=avidos_mining_change,delta_color='off')
-
-        st.write('')
-
-        st.subheader('채집 제작')
-        avidos_list_flower = ('아비도스 들꽃 : {}골드, 수줍은 들꽃 : {}골드, 들꽃 : {}골드'.format(flower_recipe_blue_avidos,flower_recipe_green,flower_recipe_white))
-        
-        if flower_recipe_green >= flower_recipe_white*2:
-            if flower_recipe_blue_avidos >= flower_recipe_white*12.5:
-                avidos_flower = flower_recipe_white*12.5
-                avidos_flower_change = '가루 교환 사용 (들꽃)'
-            else:    
-                avidos_flower = flower_recipe_blue_avidos
-                avidos_flower_change = '가루 교환 사용하지 않음'
-        else:
-            if flower_recipe_blue_avidos >= flower_recipe_green*6.25:
-                avidos_flower = flower_recipe_green*6.25
-                avidos_flower_change = '가루 교환 사용 (수줍은 들꽃)'
-            else:    
-                avidos_flower = flower_recipe_blue_avidos
-                avidos_flower_change = '가루 교환 사용하지 않음'
-                
-        avidos_recipe_flower = avidos_flower*33 + flower_recipe_green*45 + flower_recipe_white*86
-        avidos_flower_profit = (avidos_value_1-avidos_charge_1)*1000-avidos_recipe_flower-36800
-
-        if avidos_flower_profit>=0:
-            avidos_flower_result = '1칸 당 '+str(int(avidos_flower_profit/100))+'골드 이득'
-        else:
-            avidos_flower_result = '만들어 팔면 손해'
-        
-        st.metric(label=avidos_list_flower,value=avidos_flower_result,delta=avidos_flower_change,delta_color='off')
-
-        st.write('')
-
-        st.subheader('수렵 제작')
-        avidos_list_hunting = ('아비도스 두툼한 생고기 : {}골드, 다듬은 생고기 : {}골드, 두툼한 생고기 : {}골드'.format(hunting_recipe_blue_avidos,hunting_recipe_green,hunting_recipe_white))
-        
-        if hunting_recipe_green >= hunting_recipe_white*2:
-            if hunting_recipe_blue_avidos >= hunting_recipe_white*12.5:
-                avidos_hunting = hunting_recipe_white*12.5
-                avidos_hunting_change = '가루 교환 사용 (두툼한 생고기)'
-            else:    
-                avidos_hunting = hunting_recipe_blue_avidos
-                avidos_hunting_change = '가루 교환 사용하지 않음'
-        else:
-            if hunting_recipe_blue_avidos >= hunting_recipe_green*6.25:
-                avidos_hunting = hunting_recipe_green*6.25
-                avidos_hunting_change = '가루 교환 사용 (다듬은 생고기)'
-            else:    
-                avidos_hunting = hunting_recipe_blue_avidos
-                avidos_hunting_change = '가루 교환 사용하지 않음'
-                
-        avidos_recipe_hunting = avidos_hunting*33 + hunting_recipe_green*45 + hunting_recipe_white*86
-        avidos_hunting_profit = (avidos_value_1-avidos_charge_1)*1000-avidos_recipe_hunting-36800
-
-        if avidos_hunting_profit>=0:
-            avidos_hunting_result = '1칸 당 '+str(int(avidos_hunting_profit/100))+'골드 이득'
-        else:
-            avidos_hunting_result = '만들어 팔면 손해'
-        
-        st.metric(label=avidos_list_hunting,value=avidos_hunting_result,delta=avidos_hunting_change,delta_color='off')
-    
+            if avidos_hunting_profit>=0:
+                avidos_hunting_result = '1칸 당 '+str(int(avidos_hunting_profit/100))+'골드 이득'
+            else:
+                avidos_hunting_result = '만들어 팔면 손해'
+            
+            st.metric(label=avidos_list_hunting,value=avidos_hunting_result,delta=avidos_hunting_change,delta_color='off')
+    else:
+        st.warning('수정이 필요한 상태')
     
 
 with tab3:
