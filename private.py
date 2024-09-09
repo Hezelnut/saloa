@@ -475,7 +475,7 @@ with tab3:
     select_reward = st.multiselect('필요한 재료 선택',('클리어 골드','운명의 파편','운명의 돌파석','운명의 파괴석','운명의 수호석','운명의 돌'),['클리어 골드','운명의 파편','운명의 돌파석','운명의 파괴석','운명의 수호석','운명의 돌'])
     if '운명의 수호석' in select_reward:
         price_pr_1 = st.number_input('지역채팅 정제된 수호강석 한 덩이(9999개) 가격',value=1500)
-    raid = st.selectbox('컨텐츠',('카멘 하드','베히모스 노말','에키드나 하드','에기르 노말','에기르 하드','아브렐슈드 노말','아브렐슈드 하드'))
+    raid_multiselect = st.multiselect('컨텐츠',['카멘 하드','베히모스 노말','에키드나 하드','에기르 노말','에기르 하드','아브렐슈드 노말','아브렐슈드 하드'],['에기르 하드'])
     
     if '운명의 파편' in select_reward:
         price_sh = price('운명의 파편 주머니(소)')/1000
@@ -840,49 +840,52 @@ with tab3:
                 '더보기 골드':0
                 }
             }
-    
-    raid_name = st.session_state[raid]
-    df_list = []
-    df_reward = []
-    for i in range(0,len(raid_name)):
-        raid_gate = raid_name[i]
-        raid_reward = st.session_state[raid_gate]['컨텐츠 보상']
-        raid_reward_plus = st.session_state[raid_gate]['더보기']
-        if '클리어 골드' in select_reward:
-            reward_price = int(raid_reward['운명의 파편']*price_sh + raid_reward['운명의 파괴석']*price_de + raid_reward['혼돈의 돌']*price_ch + raid_reward['운명의 돌파석']*price_st + raid_reward['운명의 수호석']*price_pr_2 + raid_reward['클리어 골드'])
-            break_even = raid_reward_plus['운명의 파편']*price_sh + raid_reward_plus['운명의 파괴석']*price_de + raid_reward_plus['혼돈의 돌']*price_ch + raid_reward_plus['운명의 돌파석']*price_st + raid_reward_plus['운명의 수호석']*price_pr_2- raid_reward_plus['더보기 골드']
+    for k in range(0,len(raid_multiselect)):
+        raid = raid_multiselect[k]
+        raid_name = st.session_state[raid]
+        df_list = []
+        df_reward = []
+        for i in range(0,len(raid_name)):
+            raid_gate = raid_name[i]
+            raid_reward = st.session_state[raid_gate]['컨텐츠 보상']
+            raid_reward_plus = st.session_state[raid_gate]['더보기']
+            if '클리어 골드' in select_reward:
+                reward_price = int(raid_reward['운명의 파편']*price_sh + raid_reward['운명의 파괴석']*price_de + raid_reward['혼돈의 돌']*price_ch + raid_reward['운명의 돌파석']*price_st + raid_reward['운명의 수호석']*price_pr_2 + raid_reward['클리어 골드'])
+                break_even = raid_reward_plus['운명의 파편']*price_sh + raid_reward_plus['운명의 파괴석']*price_de + raid_reward_plus['혼돈의 돌']*price_ch + raid_reward_plus['운명의 돌파석']*price_st + raid_reward_plus['운명의 수호석']*price_pr_2- raid_reward_plus['더보기 골드']
 
-        else:
-            reward_price = int(raid_reward['운명의 파편']*price_sh + raid_reward['운명의 파괴석']*price_de + raid_reward['혼돈의 돌']*price_ch + raid_reward['운명의 돌파석']*price_st + raid_reward['운명의 수호석']*price_pr_2)
-            break_even = raid_reward_plus['운명의 파편']*price_sh + raid_reward_plus['운명의 파괴석']*price_de + raid_reward_plus['혼돈의 돌']*price_ch + raid_reward_plus['운명의 돌파석']*price_st + raid_reward_plus['운명의 수호석']*price_pr_2-raid_reward_plus['더보기 골드']
+            else:
+                reward_price = int(raid_reward['운명의 파편']*price_sh + raid_reward['운명의 파괴석']*price_de + raid_reward['혼돈의 돌']*price_ch + raid_reward['운명의 돌파석']*price_st + raid_reward['운명의 수호석']*price_pr_2)
+                break_even = raid_reward_plus['운명의 파편']*price_sh + raid_reward_plus['운명의 파괴석']*price_de + raid_reward_plus['혼돈의 돌']*price_ch + raid_reward_plus['운명의 돌파석']*price_st + raid_reward_plus['운명의 수호석']*price_pr_2-raid_reward_plus['더보기 골드']
 
-        
-        if break_even >= 0 :
-            result = '더보기 이득 : {} 골드'.format(int(break_even))
-            value_all = reward_price+break_even
-            result_all = '보상 밸류 (더보기 포함): {} 골드'.format(int(value_all))
             
-        else :
-            result = '더보기 손해 : {} 골드'.format(int(break_even))
-            value_all = reward_price
-            result_all = '보상 밸류 (더보기 하지않음) : {} 골드'.format(int(value_all))
-        df_tuple = (raid_gate,reward_price,result,result_all)
-        df_list.append(list(df_tuple))
-        df_reward.append(value_all)
-        
-    df = pd.DataFrame(df_list,columns=('관문','컨텐츠 보상','더보기','전체 밸류'))
-    st.subheader(raid)
-    st.write(df)
+            if break_even >= 0 :
+                result = '더보기 이득 : {} 골드'.format(int(break_even))
+                value_all = reward_price+break_even
+                result_all = '보상 밸류 (더보기 포함): {} 골드'.format(int(value_all))
+                
+            else :
+                result = '더보기 손해 : {} 골드'.format(int(break_even))
+                value_all = reward_price
+                result_all = '보상 밸류 (더보기 하지않음) : {} 골드'.format(int(value_all))
+            df_tuple = (raid_gate,reward_price,result,result_all)
+            df_list.append(list(df_tuple))
+            df_reward.append(value_all)
+            
+        df = pd.DataFrame(df_list,columns=('관문','컨텐츠 보상','더보기','전체 밸류'))
+        st.subheader(raid)
+        st.write(df)
 
-    if raid == '베히모스 노말':
-        st.write('[베히모스의 비늘] 재료 교환 가치를 계산에 넣지 않은 상태')
-    elif '에기르' in raid :
-        st.write('[업화의 쐐기돌] 재료 교환 벨류를 계산에 넣지 않은 상태')
-    elif '에키드나 하드' in raid :
-        st.write('[알키오네의 눈] 재료 교환 벨류를 계산에 넣지 않은 상태')
-    else:pass
+        if raid == '베히모스 노말':
+            st.write('**[베히모스의 비늘]** 재료 교환 가치를 계산에 넣지 않은 상태')
+        elif '에기르' in raid :
+            st.write('**[업화의 쐐기돌]** 재료 교환 벨류를 계산에 넣지 않은 상태')
+        elif '에키드나 하드' in raid :
+            st.write('**[알키오네의 눈]** 재료 교환 벨류를 계산에 넣지 않은 상태')
+        else:pass
 
-    st.subheader('컨텐츠 전체 밸류 : {} 골드'.format(int(sum(df_reward))))
+        st.write('컨텐츠 전체 밸류 : **{} 골드**'.format(int(sum(df_reward))))
+        st.write('')
+        st.write('')
 
 with tab4:
     # 유물 파편 : 3연마 파편24개, 20페온
