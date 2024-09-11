@@ -70,12 +70,14 @@ def database():
 st.title("Saloa")
 
 
-time_gap = datetime.datetime.now(pytz.timezone('Asia/Seoul')) - database()[0]
-time_check = time_gap/datetime.timedelta(minutes=3)
+
 
 reset_1 = st.button('데이터 최신화')
 if reset_1 :
     st.cache_data.clear()
+
+time_gap = datetime.datetime.now(pytz.timezone('Asia/Seoul')) - database()[0]
+time_check = time_gap/datetime.timedelta(minutes=3)
 
 st.write('Data load : ',database()[0].strftime('%m.%d - %H:%M:%S'))
 minute = time_gap.total_seconds()/60
