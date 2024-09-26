@@ -930,11 +930,9 @@ with tab4:
 
 
 with tab5:
-    radio = st.radio("컨텐츠 종류",('4인 컨텐츠','8인 컨텐츠','3인 버스','4인 버스','5인 버스'))
+    radio = st.radio("컨텐츠 종류",('4인 컨텐츠','8인 컨텐츠','3인 버스','4인 버스','베히 8인 버스'))
     bid = st.number_input("경매품 가격을 입력하세요")
-    if bid == 0.00 :
-        pass
-    elif radio == '4인 컨텐츠':
+    if radio == '4인 컨텐츠':
         st.write(int(bid*0.95*3/4.4),'골드 이상 ',int(bid*0.95*3/4),'골드 이하')
     elif radio == '8인 컨텐츠':
         st.write(int(bid*0.95*7/8.8),'골드 이상 ',int(bid*0.95*7/8),'골드 이하')
@@ -942,7 +940,9 @@ with tab5:
         st.write('보석 입찰 가격 ',(int(bid*0.95-50)/2.95),'골드')
     elif radio == '4인 버스':
         st.write('보석 입찰 가격 ',(int(bid*0.95-50)/3.95),'골드')
-    elif radio == '5인 버스':
-        st.write('보석 입찰 가격 ',(int(bid*0.95-50)/4.95),'골드')        
-    elif radio == '6인 버스':
-        st.write('보석 입찰 가격 ',(int(bid*0.95-50)/5.95),'골드')
+    elif radio == '베히 8인 버스':
+        behemoth_1 = st.number_input("미참 손님 가격",value=15000)
+        behemoth_2 = st.number_input("독식 손님 가격",value=18000)
+        st.write('보석 거래 가격 : ',int( behemoth_1 + (behemoth_2-behemoth_1)/16),'골드')
+        st.write('독식 입찰 가격 : ',int( (behemoth_2-behemoth_1)*15/16 ),'골드')
+
