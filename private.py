@@ -941,8 +941,9 @@ with tab5:
     elif radio == '4인 버스':
         st.write('보석 입찰 가격 ',(int(bid*0.95-50)/3.95),'골드')
     elif radio == '베히 8인 버스':
+        st.write('[유물각인서] 보석 입찰 가격 ',(int(bid*0.95-50)/7.95),'골드')
         behemoth_1 = st.number_input("미참 손님 가격",value=15000)
         behemoth_2 = st.number_input("독식 손님 가격",value=18000)
-        st.write('보석 거래 가격 : ',int( behemoth_1 + (behemoth_2-behemoth_1)/16),'골드')
-        st.write('독식 입찰 가격 : ',int( (behemoth_2-behemoth_1)*15/16 ),'골드')
+        st.write('[손님]보석 거래 가격 : ',int( behemoth_1 + (behemoth_2-behemoth_1)/16),'골드')
+        st.write('[손님]독식 입찰 가격 : ',int( (behemoth_2-behemoth_1)*15/16 ),'골드')
 
