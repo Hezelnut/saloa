@@ -883,6 +883,10 @@ with tab3:
             st.write('**[업화의 쐐기돌]** 재료 교환 벨류를 계산에 넣지 않은 상태')
         elif '에키드나 하드' in raid :
             st.write('**[알키오네의 눈]** 재료 교환 벨류를 계산에 넣지 않은 상태')
+        elif '아브렐슈드 노말' in raid :
+            st.write('**[카르마의 잔영 ]** 1관문 4개 더보기 4개 / 2관문 6개 더보기 6개)
+        elif '아브렐슈드 하드' in raid :
+            st.write('**[카르마의 잔영 ]** 1관문 8개 더보기 8개 / 2관문 12개 더보기 12개)
         else:pass
 
         st.write('컨텐츠 전체 밸류 : **{} 골드**'.format(int(sum(df_reward))))
