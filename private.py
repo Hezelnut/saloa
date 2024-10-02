@@ -873,7 +873,7 @@ with tab3:
             df_list.append(list(df_tuple))
             df_reward.append(value_all)
             
-        df = pd.DataFrame(df_list,columns=('관문','클리어 골드','컨텐츠 보상','더보기','전체 밸류'))
+        df = pd.DataFrame(df_list,columns=('관문','클리어 골드','골드 & 재료 벨류','더보기','전체 밸류'))
         st.subheader(raid)
         st.write(df)
 
