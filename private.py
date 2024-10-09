@@ -154,7 +154,7 @@ with tab1:
         st.write('')
         st.write('')
         st.write('최상급 오레하 융화 재료 가격 : ',price('최상급 오레하 융화 재료'),'골드')
-        st.write('제작 수수료 기준 : ',int(276),'골드')
+        st.write('제작 수수료 기준 : ',int(261),'골드')
 
         oreha_value_1 = st.number_input('최상급 오레하 판매 가격',value=price('최상급 오레하 융화 재료'))
         for n in range(0,oreha_value_1):
@@ -252,7 +252,7 @@ with tab1:
                     avidos_legacy_change = '가루 교환 사용하지 않음'
 
             avidos_recipe_legacy = avidos_legacy*33 + legacy_recipe_green*45 + legacy_recipe_white*86
-            avidos_legacy_profit = (avidos_value_1-avidos_charge_1)*1000-avidos_recipe_legacy-36800
+            avidos_legacy_profit = (avidos_value_1-avidos_charge_1)*1000-avidos_recipe_legacy-34800
 
             if avidos_legacy_profit>=0:
                 avidos_legacy_result = '1칸 당 '+str(int(avidos_legacy_profit/100))+'골드 이득'
@@ -282,7 +282,7 @@ with tab1:
                     avidos_fishing_change = '가루 교환 사용하지 않음'
                     
             avidos_recipe_fishing = avidos_fishing*33 + fishing_recipe_green*45 + fishing_recipe_white*86
-            avidos_fishing_profit = (avidos_value_1-avidos_charge_1)*1000-avidos_recipe_fishing-36800
+            avidos_fishing_profit = (avidos_value_1-avidos_charge_1)*1000-avidos_recipe_fishing-34800
 
             if avidos_fishing_profit>=0:
                 avidos_fishing_result = '1칸 당 '+str(int(avidos_fishing_profit/100))+'골드 이득'
@@ -312,7 +312,7 @@ with tab1:
                     avidos_tree_change = '가루 교환 사용하지 않음'
                     
             avidos_recipe_tree = avidos_tree*33 + tree_recipe_green*45 + tree_recipe_white*86
-            avidos_tree_profit = (avidos_value_1-avidos_charge_1)*1000-avidos_recipe_tree-36800
+            avidos_tree_profit = (avidos_value_1-avidos_charge_1)*1000-avidos_recipe_tree-34800
 
             if avidos_tree_profit>=0:
                 avidos_tree_result = '1칸 당 '+str(int(avidos_tree_profit/100))+'골드 이득'
@@ -342,7 +342,7 @@ with tab1:
                     avidos_mining_change = '가루 교환 사용하지 않음'
                     
             avidos_recipe_mining = avidos_mining*33 + mining_recipe_green*45 + mining_recipe_white*86
-            avidos_mining_profit = (avidos_value_1-avidos_charge_1)*1000-avidos_recipe_mining-36800
+            avidos_mining_profit = (avidos_value_1-avidos_charge_1)*1000-avidos_recipe_mining-34800
 
             if avidos_mining_profit>=0:
                 avidos_mining_result = '1칸 당 '+str(int(avidos_mining_profit/100))+'골드 이득'
@@ -372,7 +372,7 @@ with tab1:
                     avidos_flower_change = '가루 교환 사용하지 않음'
                     
             avidos_recipe_flower = avidos_flower*33 + flower_recipe_green*45 + flower_recipe_white*86
-            avidos_flower_profit = (avidos_value_1-avidos_charge_1)*1000-avidos_recipe_flower-36800
+            avidos_flower_profit = (avidos_value_1-avidos_charge_1)*1000-avidos_recipe_flower-34800
 
             if avidos_flower_profit>=0:
                 avidos_flower_result = '1칸 당 '+str(int(avidos_flower_profit/100))+'골드 이득'
@@ -402,7 +402,7 @@ with tab1:
                     avidos_hunting_change = '가루 교환 사용하지 않음'
                     
             avidos_recipe_hunting = avidos_hunting*33 + hunting_recipe_green*45 + hunting_recipe_white*86
-            avidos_hunting_profit = (avidos_value_1-avidos_charge_1)*1000-avidos_recipe_hunting-36800
+            avidos_hunting_profit = (avidos_value_1-avidos_charge_1)*1000-avidos_recipe_hunting-34800
 
             if avidos_hunting_profit>=0:
                 avidos_hunting_result = '1칸 당 '+str(int(avidos_hunting_profit/100))+'골드 이득'
