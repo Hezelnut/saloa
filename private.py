@@ -148,13 +148,31 @@ with tab0 :
 
 with tab1:
     #harmonize = 융화재
+    harmonize_setting = st.multiselect('영지 세팅',('여신의 가호','곡예사의 대기실','[실리안] 마성의 상속자','[페일린] 베른 무도회','[니아] 기본 의복'),['여신의 가호','곡예사의 대기실','[실리안] 마성의 상속자','[페일린] 베른 무도회','[니아] 기본 의복'])
+    harmonize_discount = 4
+    if '여신의 가호' in harmonize_setting :
+        harmonize_discount += 1
+    else:pass
+    if '곡예사의 대기실' in harmonize_setting :
+        harmonize_discount += 4
+    else:pass
+    if '[실리안] 마성의 상속자' in harmonize_setting :
+        harmonize_discount += 1
+    else:pass
+    if '[페일린] 베른 무도회' in harmonize_setting :
+        harmonize_discount += 2
+    else:pass
+    if '[니아] 기본 의복' in harmonize_setting :
+        harmonize_discount += 1
+    else:pass
+        
     harmonize = ['아비도스 융화 재료','최상급 오레하 융화 재료']
     choice = st.radio('제작할 융화 재료 선택',harmonize)
     if choice == '최상급 오레하 융화 재료':
         st.write('')
         st.write('')
         st.write('최상급 오레하 융화 재료 가격 : ',price('최상급 오레하 융화 재료'),'골드')
-        st.write('제작 수수료 기준 : ',int(261),'골드')
+        st.write('제작 수수료 기준 : ',int(300-3*harmonize_discount),'골드')
 
         oreha_value_1 = st.number_input('최상급 오레하 판매 가격',value=price('최상급 오레하 융화 재료'))
         for n in range(0,oreha_value_1):
@@ -183,7 +201,7 @@ with tab1:
                     oreha_change_tf = '가루 교환 사용 (고대 유물)'
 
             recipe_legacy = oreha_legacy*52 + legacy_recipe_green*51 + legacy_recipe_white*107
-            profit_legacy = (oreha_value_1-oreha_charge)*1500-recipe_legacy-27600
+            profit_legacy = (oreha_value_1-oreha_charge)*1500-recipe_legacy-100*(300-3*harmonize_discount)
 
             if profit_legacy>=0:
                 legacy_result = '1칸 당 '+str(int(profit_legacy/100))+'골드 이득'
@@ -211,7 +229,7 @@ with tab1:
                     oreha_fishing = fishing_recipe_green*6.25
                     fishing_2 = '가루 교환 사용 (붉은 살 생선)'
             recipe_fishing = oreha_fishing*52 + fishing_recipe_green*64 + fishing_recipe_white*142
-            profit_fishing = (oreha_value_1-oreha_charge)*1500 - recipe_fishing -27600
+            profit_fishing = (oreha_value_1-oreha_charge)*1500 - recipe_fishing - 100*(300-3*harmonize_discount)
             if profit_fishing >= 0:
                 fishing_result = '1칸 당 '+str(int(profit_fishing/100))+' 골드 이득'
             else:
@@ -221,7 +239,7 @@ with tab1:
         st.write('')
         st.write('')
         st.write('아비도스 재료 가격 : ',price('아비도스 융화 재료'),'골드')
-        st.write('제작 수수료 기준 : ',int(368),'골드')
+        st.write('제작 수수료 기준 : ',int(400-4*harmonize_discount),'골드')
         avidos_value_1 = st.number_input('아비도스 융화 재료 판매 가격',value=price('아비도스 융화 재료'))
         for n in range(0,avidos_value_1):
             if n+1>=avidos_value_1*0.05>n:
@@ -252,7 +270,7 @@ with tab1:
                     avidos_legacy_change = '가루 교환 사용하지 않음'
 
             avidos_recipe_legacy = avidos_legacy*33 + legacy_recipe_green*45 + legacy_recipe_white*86
-            avidos_legacy_profit = (avidos_value_1-avidos_charge_1)*1000-avidos_recipe_legacy-34800
+            avidos_legacy_profit = (avidos_value_1-avidos_charge_1)*1000-avidos_recipe_legacy-100*(400-4*harmonize_discount)
 
             if avidos_legacy_profit>=0:
                 avidos_legacy_result = '1칸 당 '+str(int(avidos_legacy_profit/100))+'골드 이득'
@@ -282,7 +300,7 @@ with tab1:
                     avidos_fishing_change = '가루 교환 사용하지 않음'
                     
             avidos_recipe_fishing = avidos_fishing*33 + fishing_recipe_green*45 + fishing_recipe_white*86
-            avidos_fishing_profit = (avidos_value_1-avidos_charge_1)*1000-avidos_recipe_fishing-34800
+            avidos_fishing_profit = (avidos_value_1-avidos_charge_1)*1000-avidos_recipe_fishing-100*(400-4*harmonize_discount)
 
             if avidos_fishing_profit>=0:
                 avidos_fishing_result = '1칸 당 '+str(int(avidos_fishing_profit/100))+'골드 이득'
@@ -312,7 +330,7 @@ with tab1:
                     avidos_tree_change = '가루 교환 사용하지 않음'
                     
             avidos_recipe_tree = avidos_tree*33 + tree_recipe_green*45 + tree_recipe_white*86
-            avidos_tree_profit = (avidos_value_1-avidos_charge_1)*1000-avidos_recipe_tree-34800
+            avidos_tree_profit = (avidos_value_1-avidos_charge_1)*1000-avidos_recipe_tree-100*(400-4*harmonize_discount)
 
             if avidos_tree_profit>=0:
                 avidos_tree_result = '1칸 당 '+str(int(avidos_tree_profit/100))+'골드 이득'
@@ -342,7 +360,7 @@ with tab1:
                     avidos_mining_change = '가루 교환 사용하지 않음'
                     
             avidos_recipe_mining = avidos_mining*33 + mining_recipe_green*45 + mining_recipe_white*86
-            avidos_mining_profit = (avidos_value_1-avidos_charge_1)*1000-avidos_recipe_mining-34800
+            avidos_mining_profit = (avidos_value_1-avidos_charge_1)*1000-avidos_recipe_mining-100*(400-4*harmonize_discount)
 
             if avidos_mining_profit>=0:
                 avidos_mining_result = '1칸 당 '+str(int(avidos_mining_profit/100))+'골드 이득'
@@ -372,7 +390,7 @@ with tab1:
                     avidos_flower_change = '가루 교환 사용하지 않음'
                     
             avidos_recipe_flower = avidos_flower*33 + flower_recipe_green*45 + flower_recipe_white*86
-            avidos_flower_profit = (avidos_value_1-avidos_charge_1)*1000-avidos_recipe_flower-34800
+            avidos_flower_profit = (avidos_value_1-avidos_charge_1)*1000-avidos_recipe_flower-100*(400-4*harmonize_discount)
 
             if avidos_flower_profit>=0:
                 avidos_flower_result = '1칸 당 '+str(int(avidos_flower_profit/100))+'골드 이득'
@@ -402,7 +420,7 @@ with tab1:
                     avidos_hunting_change = '가루 교환 사용하지 않음'
                     
             avidos_recipe_hunting = avidos_hunting*33 + hunting_recipe_green*45 + hunting_recipe_white*86
-            avidos_hunting_profit = (avidos_value_1-avidos_charge_1)*1000-avidos_recipe_hunting-34800
+            avidos_hunting_profit = (avidos_value_1-avidos_charge_1)*1000-avidos_recipe_hunting-100*(400-4*harmonize_discount)
 
             if avidos_hunting_profit>=0:
                 avidos_hunting_result = '1칸 당 '+str(int(avidos_hunting_profit/100))+'골드 이득'
