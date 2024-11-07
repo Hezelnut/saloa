@@ -148,10 +148,13 @@ with tab0 :
 
 with tab1:
     #harmonize = 융화재
-    harmonize_setting = st.multiselect('영지 세팅',('여신의 가호','곡예사의 대기실','[실리안] 마성의 상속자','[페일린] 베른 무도회','[니아] 기본 의복'),['여신의 가호','곡예사의 대기실','[실리안] 마성의 상속자','[페일린] 베른 무도회','[니아] 기본 의복'])
+    harmonize_setting = st.multiselect('영지 세팅',('여신의 가호','곡예사의 대기실','찬란한 소원 나무','[실리안] 마성의 상속자','[페일린] 베른 무도회','[니아] 기본 의복'),['여신의 가호','곡예사의 대기실','찬란한 소원 나무','[실리안] 마성의 상속자','[페일린] 베른 무도회','[니아] 기본 의복'])
     harmonize_discount = 4
     if '여신의 가호' in harmonize_setting :
         harmonize_discount += 1
+    else:pass
+    if '찬란한 소원 나무' in harmonize_setting :
+        harmonize_discount += 2
     else:pass
     if '곡예사의 대기실' in harmonize_setting :
         harmonize_discount += 4
