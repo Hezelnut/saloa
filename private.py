@@ -917,7 +917,7 @@ with tab3:
 with tab4:
     # 유물 파편 : 3연마 파편24개, 20페온
     # 고대 파편 : 3연마 파편180개, 35페온
-    crystal_value = st.number_input('크리스탈 가격 :__골드',value=2350)
+    crystal_value = st.number_input('크리스탈 가격 :__골드',value=3800)
     peon = crystal_value * 850 / 9500
     shard_need = st.number_input('필요한 파편 갯수 : __개',value=450)
 
@@ -972,8 +972,8 @@ with tab5:
     elif radio == '베히 8인 버스':
         st.write('**[유물각인서]** 보석 입찰 가격 ',(int(bid*0.95-50)/8),'골드')
         st.write('')
-        behemoth_1 = st.number_input("미참 손님 가격",value=15000)
-        behemoth_2 = st.number_input("독식 손님 가격",value=18000)
+        behemoth_1 = st.number_input("미참 손님 가격",value=10000)
+        behemoth_2 = st.number_input("독식 손님 가격",value=12000)
         st.write('보석 거래 가격 : ',int( behemoth_1 + (behemoth_2-behemoth_1)/16),'골드 / 독식 입찰 가격 : ',int( (behemoth_2-behemoth_1)*15/16 ),'골드')
         
 
