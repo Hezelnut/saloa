@@ -45,7 +45,7 @@ def database():
                     data_price.append(item[i]['RecentPrice'])
             except:pass
     
-    for t in range(1,10) :
+    for t in range(1,6) :
         json_market = {
         'Sort': '',
         'CategoryCode': 40000,
