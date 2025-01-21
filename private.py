@@ -17,24 +17,6 @@ headers = {
             }
 
 
-json_auction = {
-    'ItemLevelMin': 0,
-    'ItemLevelMax': 1700,
-    'ItemGradeQuality': 0,
-    'Sort': 'BUY_PRICE',
-    'CategoryCode': 210000,
-    'CharacterClass': '',
-    'ItemTier': 3,
-    'ItemGrade': '희귀',
-    'ItemName': '3레벨',
-    'PageNo': 0,
-    'SortCondition': 'ASC',
-}
-
-response_auction = requests.post('https://developer-lostark.game.onstove.com/auctions/items', headers=headers, json=json_auction)
-content_auction = response_auction.json()
-item_list = content_auction['Items']
-
 @st.cache_data
 def database():
     data_name = []
@@ -62,6 +44,26 @@ def database():
                     data_name.append(item[i]['Name'])
                     data_price.append(item[i]['RecentPrice'])
             except:pass
+    
+    for t in range(1,10) :
+        json_market = {
+        'Sort': '',
+        'CategoryCode': 40000,
+        'CharacterClass': '',
+        'ItemTier': 0,
+        'ItemGrade': '고대',
+        'ItemName': '' ,
+        'PageNo': t,
+        'SortCondition': 'ASC',
+        }
+        try:
+            response_market =requests.post('https://developer-lostark.game.onstove.com/markets/items', headers=headers, json=json_market)
+            content_market = response_market.json()
+            item = content_market['Items']
+            for i in range(len(item)):
+                data_name.append(item[i]['Name'])
+                data_price.append(item[i]['RecentPrice'])
+        except:pass
     data_dict_1 = dict(zip(data_name,data_price))
     data_tuple = (update_time,data_dict_1)
     data_include_time = list(data_tuple)
@@ -93,7 +95,7 @@ def charge(args):
         if n+1>=database()[1][args]*0.05>n:
             return n+1
         
-tab0, tab1, tab2, tab3, tab4, tab5 = st.tabs(['재료','융화 재료 제작','배틀아이템 제작','4티어 컨텐츠 손익','4티어 악세 파편','경매 입찰가격'])
+tab0, tab1, tab2, tab3, tab4, tab5 = st.tabs(['재료','융화 재료 제작','배틀아이템 제작','4티어 컨텐츠 손익','유물 각인 가격','경매 입찰가격'])
 
 with tab0 :
     if 'modify' not in st.session_state:
@@ -915,41 +917,7 @@ with tab3:
         st.write('')
 
 with tab4:
-    # 유물 파편 : 3연마 파편24개, 20페온
-    # 고대 파편 : 3연마 파편180개, 35페온
-    crystal_value = st.number_input('크리스탈 가격 :__골드',value=3800)
-    peon = crystal_value * 850 / 9500
-    shard_need = st.number_input('필요한 파편 갯수 : __개',value=450)
-
-    st.write('')
-    st.write('')
-    st.write('')
-
-    shard_legacy = (st.number_input('유물 3연마 가격 = __골드',value=800) + 20*peon) / 24
-    shard_ancient = (st.number_input('고대 3연마 가격 = __골드',value=24000) + 35*peon) / 180
-
-    st.write('')
-    st.write('')
-
-    if shard_legacy > shard_ancient:
-        st.write('고대 3연마 악세사리 쪽이 파편 값이 더 낮음')
-        st.write('고대악세 구매 시 파편 1개 당 : {}골드'.format(int(shard_ancient)))
-        st.write('')
-        st.write('유물악세 구매 시 파편 1개 당 : {}골드'.format(int(shard_legacy)))
-        st.write('')
-        shard_buy = shard_need//180
-        st.write('구매해야 할 고대3연마 악세사리 : {}개'.format(shard_buy))
-        st.write('총 필요한 골드 : {}골드'.format(int(shard_ancient)*shard_need))
-        st.write('나머지 파편 : ()개'.format(int(shard_need-180*shard_buy)))
-    else:
-        st.write('유물 3연마 악세사리 쪽이 파편 값이 더 낮음')
-        st.write('유물악세 구매 시 파편 1개 당 : {}골드'.format(int(shard_legacy)))
-        st.write('')
-        st.write('고대악세 구매 시 파편 1개 당 : {}골드'.format(int(shard_ancient)))
-        st.write('')
-        shard_buy = shard_need//24 +1
-        st.write('구매해야 할 유물3연마 악세사리 : {}개'.format(shard_buy))
-        st.write('총 필요한 골드 : {}골드'.format(shard_legacy*24*shard_buy))
+    st.write(price('아드레날린 각인서'))
 
 
 
