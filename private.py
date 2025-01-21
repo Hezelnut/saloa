@@ -51,7 +51,7 @@ def database():
         'CategoryCode': 40000,
         'CharacterClass': '',
         'ItemTier': 0,
-        'ItemGrade': '고대',
+        'ItemGrade': '유물',
         'ItemName': '' ,
         'PageNo': t,
         'SortCondition': 'ASC',
@@ -917,7 +917,33 @@ with tab3:
         st.write('')
 
 with tab4:
-    st.write(price('아드레날린 각인서'))
+    st.write('원한')
+    st.write(price('원한 각인서'),'골드')
+
+    st.write('아드레날린')
+    st.write(price('아드레날린 각인서'),'골드')
+
+    st.write('예리한 둔기')
+    st.write(price('예리한 둔기 각인서'),'골드')
+
+    st.write('돌격대장')
+    st.write(price('돌격대장 각인서'),'골드')
+
+    st.write('저주받은 인형')
+    st.write(price('저주받은 인형 각인서'),'골드')
+
+    st.write('기습의 대가')
+    st.write(price('기습의 대가 각인서'),'골드')
+
+    st.write('질량 증가')
+    st.write(price('질량 증가 각인서'),'골드')
+
+    st.write('타격의 대가')
+    st.write(price('타격의 대가 각인서'),'골드')
+
+    
+
+
 
 
 
