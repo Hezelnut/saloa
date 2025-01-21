@@ -918,21 +918,21 @@ with tab3:
         st.write('')
 
 with tab4:
-    st.write(f'원한 {price('원한 각인서')} 골드')
+    st.write(f"원한 {price('원한 각인서')} 골드")
     st.write()
-    st.write(f'아드레날린 {price('아드레날린 각인서')} 골드')
+    st.write(f"아드레날린 {price('아드레날린 각인서')} 골드")
     st.write('')
-    st.write(f'예리한 둔기 {price('예리한 둔기 각인서')} 골드')
+    st.write(f"예리한 둔기 {price('예리한 둔기 각인서')} 골드")
     st.write('')
-    st.write(f'돌격대장 {price('돌격대장 각인서')} 골드')
+    st.write(f"돌격대장 {price('돌격대장 각인서')} 골드")
     st.write('')
-    st.write(f'저주받은 인형 {price('저주받은 인형 각인서')} 골드')
+    st.write(f"저주받은 인형 {price('저주받은 인형 각인서')} 골드")
     st.write('')
-    st.write(f'기습의 대가 {price('기습의 대가 각인서')} 골드')
+    st.write(f"기습의 대가 {price('기습의 대가 각인서')} 골드")
     st.write('')
-    st.write(f'질량 증가 {price('질량 증가 각인서')} 골드')
+    st.write(f"질량 증가 {price('질량 증가 각인서')} 골드")
     st.write('')
-    st.write(f'타격의 대가 {price('타격의 대가 각인서')} 골드')
+    st.write(f"타격의 대가 {price('타격의 대가 각인서')} 골드")
 
     
 
