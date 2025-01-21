@@ -919,7 +919,7 @@ with tab3:
 
 with tab4:
     st.write(f"원한 {price('원한 각인서')} 골드")
-    st.write()
+    st.write('')
     st.write(f"아드레날린 {price('아드레날린 각인서')} 골드")
     st.write('')
     st.write(f"예리한 둔기 {price('예리한 둔기 각인서')} 골드")
