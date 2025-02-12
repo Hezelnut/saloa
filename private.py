@@ -923,8 +923,8 @@ with tab3:
                 }
             }
         
-   if '모르둠 노말3관문' not in st.session_state:
-    st.session_state['모르둠 노말3관문'] = {
+    if '모르둠 노말3관문' not in st.session_state:
+        st.session_state['모르둠 노말3관문'] = {
         '컨텐츠 보상':{
             '운명의 파편':4200,
             '운명의 파괴석':520,
@@ -981,7 +981,7 @@ with tab3:
                 '더보기 골드':4100
                 }
             }
-        if '모르둠 하드3관문' not in st.session_state:
+    if '모르둠 하드3관문' not in st.session_state:
         st.session_state['모르둠 하드3관문'] = {
             '컨텐츠 보상':{
                 '운명의 파편':5600,
