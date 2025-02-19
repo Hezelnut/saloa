@@ -447,7 +447,7 @@ with tab1:
 with tab2:
     st.subheader('정령의 회복약')
     st.write('정령의 회복약 가격 : ',price('정령의 회복약'),'골드')
-    battle_1 = (price('정령의 회복약')-charge('정령의 회복약'))*300 - (price('화사한 들꽃')*8 + price('수줍은 들꽃')*25 + price('들꽃')*33 + 2600)
+    battle_1 = (price('정령의 회복약')-charge('정령의 회복약'))*300 - (price('화사한 들꽃')*8 + price('수줍은 들꽃')*25 + price('들꽃')*33 + 2500)
     if battle_1 >= 0:
         st.write('정령의 회복약 : 제작 1칸 당 ',int(battle_1/100),' 골드 이득')
     else:
@@ -455,7 +455,7 @@ with tab2:
     
     st.subheader('각성 물약')
     st.write('각성 물약 : ',price('각성 물약'),'골드')
-    battle_2 = (price('각성 물약')-charge('각성 물약'))*300 - (price('진귀한 유물')*8 + legacy_recipe_green*24 + legacy_recipe_white*32 + 2600)
+    battle_2 = (price('각성 물약')-charge('각성 물약'))*300 - (price('진귀한 유물')*8 + legacy_recipe_green*24 + legacy_recipe_white*32 + 2500)
     if battle_2 >= 0:
         st.write('각성 물약 : 제작 1칸 당 ',battle_2/100,' 골드 이득')
     else:
@@ -463,7 +463,7 @@ with tab2:
 
     st.subheader('아드로핀 물약')
     st.write('아드로핀 물약 : ',price('아드로핀 물약'),'골드')
-    battle_3 = (price('아드로핀 물약')-charge('아드로핀 물약'))*300 - (price('진귀한 유물')*6 + price('수줍은 들꽃')*8 + legacy_recipe_green*17 + legacy_recipe_white*75 + 2600)
+    battle_3 = (price('아드로핀 물약')-charge('아드로핀 물약'))*300 - (price('진귀한 유물')*6 + price('수줍은 들꽃')*8 + legacy_recipe_green*17 + legacy_recipe_white*75 + 2500)
     if battle_3 >= 0:
         st.write('아드로핀 물약 : 제작 1칸 당 ',battle_3/100,' 골드 이득')
     else:
