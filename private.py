@@ -1041,18 +1041,22 @@ with tab3:
             st.write('**[베히모스의 비늘]** 재료 교환 가치를 계산에 넣지 않은 상태')
         elif '에기르 하드' in raid :
             st.write('**[업화의 쐐기돌]** 1관문 8개 | 2관문 12개')
-            st.write(f'보조 재료 주머니 4개 가치 : {sub_reward*4} 골드')
+            st.write(f'<더보기> → 보조 재료 주머니 4개 가치 : {sub_reward*4} 골드')
+            st.write(f'<경매 재료> → 보조 재료 주머니 2개 가치 : {sub_reward*2} 골드')
         elif '에기르 노말' in raid :
             st.write('**[업화의 쐐기돌]** 1관문 4개 | 2관문 6개')
-            st.write(f'보조 재료 주머니 2개 가치 : {sub_reward*2} 골드')
+            st.write(f'<더보기> → 보조 재료 주머니 2개 가치 : {sub_reward*2} 골드')
+            st.write(f'<경매 재료> → 보조 재료 주머니 1개 가치 : {sub_reward*1} 골드')
         elif '에키드나 하드' in raid :
             st.write('**[알키오네의 눈]** 재료 교환 벨류를 계산에 넣지 않은 상태')
         elif '아브렐슈드 노말' in raid :
             st.write('**[카르마의 잔영 ]** 1관문 4개 | 2관문 6개')
-            st.write(f'보조 재료 주머니 2개 가치 : {sub_reward*2} 골드')
+            st.write(f'<더보기> → 보조 재료 주머니 2개 가치 : {sub_reward*2} 골드')
+            st.write(f'<경매 재료> → 보조 재료 주머니 1개 가치 : {sub_reward*1} 골드')
         elif '아브렐슈드 하드' in raid :
             st.write('**[카르마의 잔영 ]** 1관문 8개 | 2관문 12개')
-            st.write(f'보조 재료 주머니 4개 가치 : {sub_reward*4} 골드')
+            st.write(f'<더보기> → 보조 재료 주머니 4개 가치 : {sub_reward*4} 골드')
+            st.write(f'<경매 재료> → 보조 재료 주머니 2개 가치 : {sub_reward*2} 골드')
         elif '모르둠 노말' in raid :
             st.write('**[낙뢰의 뿔]** 1관문 3개 | 2관문 5개 | 3관문 10개')
             st.write('**[낙뢰의 뿔]** 총 18개 | 더보기 18개')
