@@ -505,15 +505,13 @@ with tab2:
         
 with tab3:
     select_reward = st.multiselect('필요한 재료 선택',('클리어 골드','운명의 파편','운명의 돌파석','운명의 파괴석','운명의 수호석','운명의 돌'),['클리어 골드','운명의 파편','운명의 돌파석','운명의 파괴석','운명의 수호석','운명의 돌'])
-    if '운명의 수호석' in select_reward:
-        price_pr_1 = st.number_input('지역채팅 정제된 수호강석 한 덩이(9999개) 가격',value=1500)
     raid_multiselect = st.multiselect('컨텐츠',
                                       ['카멘 하드','베히모스 노말','에키드나 하드','에기르 노말','에기르 하드','아브렐슈드 노말','아브렐슈드 하드', '모르둠 노말', '모르둠 하드'], # 전체 옵션
                                       ['에기르 하드','아브렐슈드 하드','모르둠 하드'] # 기본 선택 옵션
                                      )
     
     if '운명의 파편' in select_reward:
-        price_sh = price('운명의 파편 주머니(소)')/1000
+        price_sh = min([price('운명의 파편 주머니(대)')/3000,price('운명의 파편 주머니(중)')/2000,price('운명의 파편 주머니(소)')/1000])
     else:
         price_sh = 0
     
@@ -528,7 +526,7 @@ with tab3:
         price_de = 0
 
     if '운명의 수호석' in select_reward:
-        price_pr_2 = price_pr_1*5/9999
+        price_pr_2 = price('운명의 수호석')/10
     else:
         price_pr_2 = 0
 
