@@ -1014,7 +1014,7 @@ with tab3:
 
             else:
                 reward_price = int(raid_reward['운명의 파편']*price_sh + raid_reward['운명의 파괴석']*price_de + raid_reward['혼돈의 돌']*price_ch + raid_reward['운명의 돌파석']*price_st + raid_reward['운명의 수호석']*price_pr_2)
-                break_even = raid_reward_plus['운명의 파편']*price_sh + raid_reward_plus['운명의 파괴석']*price_de + raid_reward_plus['혼돈의 돌']*price_ch + raid_reward_plus['운명의 돌파석']*price_st + raid_reward_plus['운명의 수호석']*price_pr_2-raid_reward_plus['더보기 골드']
+                break_even = raid_reward_plus['운명의 파편']*price_sh + raid_reward_plus['운명의 파괴석']*price_de + raid_reward_plus['혼돈의 돌']*price_ch + raid_reward_plus['운명의 돌파석']*price_st + raid_reward_plus['운명의 수호석']*price_pr_2
 
             
             if break_even >= 0 :
@@ -1034,22 +1034,31 @@ with tab3:
         st.subheader(raid)
         st.write(df)
 
+        #심연의 재료 보조 재료 주머니
+        sub_reward = (price('용암의 숨결')*2+price('빙하의 숨결')*5)/2
+        
         if raid == '베히모스 노말':
             st.write('**[베히모스의 비늘]** 재료 교환 가치를 계산에 넣지 않은 상태')
-        elif '에기르' in raid :
-            st.write('**[업화의 쐐기돌]** 재료 교환 벨류를 계산에 넣지 않은 상태')
+        elif '에기르 하드' in raid :
+            st.write('**[업화의 쐐기돌]** 1관문 8개 | 2관문 12개')
+            st.write(f'보조 재료 주머니 4개 가치 : {sub_reward*4} 골드')
+        elif '에기르 노말' in raid :
+            st.write('**[업화의 쐐기돌]** 1관문 4개 | 2관문 6개')
+            st.write(f'보조 재료 주머니 2개 가치 : {sub_reward*2} 골드')
         elif '에키드나 하드' in raid :
             st.write('**[알키오네의 눈]** 재료 교환 벨류를 계산에 넣지 않은 상태')
         elif '아브렐슈드 노말' in raid :
-            st.write('**[카르마의 잔영 ]** 1관문 4개 더보기 4개 / 2관문 6개 더보기 6개')
+            st.write('**[카르마의 잔영 ]** 1관문 4개 | 2관문 6개')
+            st.write(f'보조 재료 주머니 2개 가치 : {sub_reward*2} 골드')
         elif '아브렐슈드 하드' in raid :
-            st.write('**[카르마의 잔영 ]** 1관문 8개 더보기 8개 / 2관문 12개 더보기 12개')
+            st.write('**[카르마의 잔영 ]** 1관문 8개 | 2관문 12개')
+            st.write(f'보조 재료 주머니 4개 가치 : {sub_reward*4} 골드')
         elif '모르둠 노말' in raid :
-            st.write('**[낙뢰의 뿔]** 1관문 3개 더보기 3개 / 2관문 5개 더보기 5개 / 3관문 10개 더보기 10개')
-            st.write('**[낙뢰의 뿔]** 총 18개 / 더보기 18개')
+            st.write('**[낙뢰의 뿔]** 1관문 3개 | 2관문 5개 | 3관문 10개')
+            st.write('**[낙뢰의 뿔]** 총 18개 | 더보기 18개')
         elif '모르둠 하드' in raid :
-            st.write('**[우레의 뇌옥]** 1관문 3개 더보기 3개 / 2관문 5개 더보기 5개 / 3관문 10개 더보기 10개')
-            st.write('**[우레의 뇌옥]** 총 18개 / 더보기 18개')
+            st.write('**[우레의 뇌옥]** 1관문 3개 | 2관문 5개 | 3관문 10개')
+            st.write('**[우레의 뇌옥]** 총 18개 | 더보기 18개')
         else:pass
 
         st.write('컨텐츠 전체 밸류 : **{} 골드**'.format(int(sum(df_reward))))
